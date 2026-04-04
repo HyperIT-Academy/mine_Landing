@@ -124,7 +124,7 @@
 
     /* ===== SHARED ===== */
     section{padding:80px 20px}
-    .wrap{max-width:1160px;margin:0 auto}
+    .wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
     .sec-tag{display:inline-flex;align-items:center;padding:5px 14px;border-radius:100px;font-size:12.5px;font-weight:800;letter-spacing:.3px;margin-bottom:14px;background:var(--accent-10);color:var(--accent)}
     .sec-title{font-family:var(--font-head);font-weight:700;font-size:clamp(28px,3.8vw,42px);line-height:1.12;color:var(--primary);margin-bottom:48px}
     .sec-title.center{text-align:center}
@@ -182,14 +182,14 @@
     /* ============================================================
        LESSONS — Inventory Slots + Showcase Bento
     ============================================================ */
-    #lessons{background:var(--primary);position:relative;overflow:hidden;padding-top:140px}
-    #lessons::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none}
+    #lessons{background:var(--primary);position:relative}
+    #lessons::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none;z-index:0}
     #lessons .sec-tag{background:rgba(192,132,252,.12);color:#C084FC}
     #lessons .sec-title{color:var(--white)}
 
     /* Requirements section */
-    #requirements{background:var(--primary);position:relative;overflow:hidden;padding-top:140px}
-    #requirements::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none}
+    #requirements{background:var(--primary);position:relative}
+    #requirements::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none;z-index:0}
     #requirements .sec-tag{background:rgba(192,132,252,.12);color:#C084FC}
     #requirements .sec-title{color:var(--white)}
 
@@ -314,8 +314,8 @@
     /* ============================================================
        REVIEWS — 1 featured + 2 standard
     ============================================================ */
-    #reviews{background:var(--white);position:relative;overflow:hidden;padding-top:140px}
-    #reviews::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--primary),var(--white));pointer-events:none}
+    #reviews{background:var(--white);position:relative}
+    #reviews::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--primary),var(--white));pointer-events:none;z-index:0}
 
     .rev-layout{
       display:grid;grid-template-columns:1fr;gap:20px;
@@ -348,7 +348,7 @@
     .rev-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--white);flex-shrink:0}
     .rev-card:nth-child(2) .rev-avatar{background:linear-gradient(135deg,var(--mc-gold),#F97316)}
     .rev-card:nth-child(3) .rev-avatar{background:linear-gradient(135deg,var(--mc-diamond),var(--mc-emerald))}
-    .rev-name{font-weight:800;font-size:14px;color:var(--primary);text-align:center}.rev-city{font-size:11px;color:var(--text);display:inline-flex;align-items:center;justify-content:center;gap:4px}
+    .rev-name{font-weight:800;font-size:14px;color:var(--primary);text-align:center}.rev-author>div{text-align:center}.rev-city{font-size:11px;color:var(--text);display:inline-flex;align-items:center;justify-content:center;gap:4px}
     .rev-city::before{content:'';display:inline-block;width:6px;height:6px;background:var(--mc-emerald);border-radius:50%}
 
     /* ============================================================
