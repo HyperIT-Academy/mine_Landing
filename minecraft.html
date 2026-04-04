@@ -495,9 +495,10 @@
       .inv-slot{padding:24px 18px;min-width:140px}
     }
 
-    .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:rgba(15,5,30,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100vh;height:100dvh;z-index:99999;background:rgba(15,5,30,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
     .modal-overlay.active{display:flex}
-    .modal{background:var(--white);border-radius:var(--r-card);max-width:420px;width:100%;padding:36px 28px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:modal-in .3s ease}
+    .modal{background:var(--white);border-radius:var(--r-card);max-width:420px;width:100%;padding:36px 28px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:modal-in .3s ease;margin:auto}
+    @media(max-width:480px){.modal-overlay{padding:12px}.modal{padding:24px 16px;border-radius:16px}.modal-divider{margin:14px 0}.modal-sub{margin-bottom:16px}}
     @keyframes modal-in{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
     .modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border:none;background:var(--bg);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text);transition:background .2s}
     .modal-close:hover{background:rgba(140,60,221,.1)}
