@@ -93,7 +93,7 @@
     .fl-badge{position:absolute;background:var(--white);border-radius:var(--r-sm);padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 12px 40px rgba(38,19,57,.25);z-index:3;white-space:nowrap}
     .fl-badge-1{top:-16px;right:-12px;animation:float-badge 4s ease-in-out infinite}
     .fl-badge-2{bottom:24px;left:-16px;animation:float-badge 4s 2s ease-in-out infinite}
-    @media(max-width:480px){.fl-badge{padding:7px 10px;transform:scale(.85)}.fl-badge-1{right:8px;top:-10px}.fl-badge-2{left:8px;bottom:16px}}
+    @media(max-width:767px){.fl-badge{display:none}}
     @keyframes float-badge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
     .fl-badge-emoji{font-size:24px}.fl-badge-label{font-size:12px;font-weight:800;color:var(--primary);text-align:center}.fl-badge-sub{font-size:11px;color:var(--text);text-align:center}
 
@@ -402,7 +402,8 @@
     ============================================================ */
     #faq{background:var(--bg);position:relative;overflow:hidden}
     #faq::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--primary),var(--bg));pointer-events:none}
-    .faq-list{max-width:700px;margin:0 auto}
+    #faq .sec-head{position:relative;z-index:1}
+    .faq-list{max-width:700px;margin:0 auto;position:relative;z-index:1}
     .faq-item{
       border-bottom:1px solid rgba(38,19,57,.08);
     }
@@ -469,7 +470,7 @@
     ::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),#C084FC);border-radius:4px}
     ::-webkit-scrollbar-thumb:hover{background:linear-gradient(var(--accent-h),var(--accent))}
 
-    @media(max-width:640px){.pixel-block{width:28px;height:28px}.hero{padding-top:88px}section{padding:60px 16px}.stat-num{font-size:26px}}
+    @media(max-width:640px){.pixel-block{width:28px;height:28px}.hero{padding-top:88px}section{padding:60px 16px}.stat-num{font-size:26px}#requirements{padding-top:80px}#requirements::before{height:60px}}
 
     /* ===== TABLET & MOBILE RESPONSIVE FIXES ===== */
     @media(max-width:767px){
@@ -559,7 +560,7 @@
         <div class="hero-actions">
           <a href="#" class="btn-primary">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-            Записатися на безкоштовний урок &rarr;
+            Записатися на безкоштовний урок
           </a>
           <div class="trust-row">
             <span class="trust-item">3 роки досвіду</span>
@@ -809,7 +810,7 @@
       <div class="start-cta">
         <a href="#" class="btn-primary">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-          Записатися на безкоштовний урок &rarr;
+          Записатися на безкоштовний урок
         </a>
         <p class="start-fine">Без оплати та зобов'язань</p>
       </div>
@@ -898,7 +899,7 @@
       <p class="final-cta-sub reveal reveal-d1">Запишіть дитину на безкоштовний пробний урок — без оплати та зобов'язань</p>
       <a href="#" class="btn-primary reveal reveal-d2">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-        Записатися на безкоштовний урок &rarr;
+        Записатися на безкоштовний урок
       </a>
       <p class="start-fine reveal reveal-d3">Без оплати &middot; Перший урок безкоштовно</p>
     </div>
