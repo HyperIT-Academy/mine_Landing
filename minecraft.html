@@ -506,6 +506,13 @@
     .modal-submit{width:100%;padding:12px;background:var(--accent);color:var(--white);border:none;border-radius:var(--r-btn);font-family:var(--font-body);font-weight:800;font-size:15px;cursor:pointer;transition:background .2s,transform .2s}
     .modal-submit:hover{background:var(--accent-h);transform:translateY(-1px)}
     .modal-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+    .modal-field.error{border-color:var(--mc-red)}
+    .modal-field-error{font-size:12px;color:var(--mc-red);margin:-6px 0 8px 4px;display:none}
+    .modal-field-error.show{display:block}
+    .modal-error-banner{background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--mc-red);text-align:center;display:none;line-height:1.5}
+    .modal-error-banner.show{display:block}
+    .modal-spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+    @keyframes spin{to{transform:rotate(360deg)}}
     .modal-viber{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;font-size:13px;color:var(--text);font-weight:600}
     .modal-viber a{color:#7360F2;font-weight:700;text-decoration:none}
     .modal-viber a:hover{text-decoration:underline}
@@ -514,6 +521,9 @@
     .modal-success-icon{font-size:48px;margin-bottom:12px}
     .modal-success-title{font-family:var(--font-head);font-weight:700;font-size:20px;color:var(--primary);margin-bottom:8px}
     .modal-success-text{font-size:14px;color:var(--text);line-height:1.6}
+    .modal-success-tg{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 24px;background:#2AABEE;color:var(--white);border:none;border-radius:var(--r-btn);font-family:var(--font-body);font-weight:800;font-size:15px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
+    .modal-success-tg:hover{background:#229ED9;transform:translateY(-2px)}
+    .modal-success-tg svg{width:18px;height:18px;flex-shrink:0}
     .modal-form.hidden{display:none}
   </style>
 </head>
@@ -920,15 +930,27 @@
           Продовжити в Telegram
         </a>
         <div class="modal-divider">Немає Telegram?</div>
-        <input type="text" class="modal-field" id="m-name" placeholder="Ім'я дитини" required>
-        <input type="text" class="modal-field" id="m-contact" placeholder="Email або номер Viber" required>
-        <button class="modal-submit" onclick="submitForm()">Надіслати заявку</button>
+        <div class="modal-error-banner" id="modal-error"></div>
+        <input type="text" class="modal-field" id="m-parent" placeholder="Ваше ім'я (батько/мати)">
+        <div class="modal-field-error" id="err-parent"></div>
+        <input type="text" class="modal-field" id="m-child" placeholder="Ім'я дитини">
+        <div class="modal-field-error" id="err-child"></div>
+        <input type="tel" class="modal-field" id="m-phone" placeholder="Телефон (+380...)">
+        <div class="modal-field-error" id="err-phone"></div>
+        <input type="email" class="modal-field" id="m-email" placeholder="Email">
+        <div class="modal-field-error" id="err-email"></div>
+        <input type="text" class="modal-field" id="m-honeypot" style="position:absolute;left:-9999px;opacity:0;height:0" tabindex="-1" autocomplete="off">
+        <button class="modal-submit" id="modal-submit-btn" onclick="submitForm()">Надіслати заявку</button>
         <div class="modal-viber">Або напишіть нам у <a href="viber://chat?number=%2B380938013422">Viber</a></div>
       </div>
       <div class="modal-success" id="modal-success">
         <div class="modal-success-icon">&#x2705;</div>
         <div class="modal-success-title">Заявку надіслано!</div>
         <p class="modal-success-text">Ми зв'яжемося з вами найближчим часом, щоб обрати зручний час для пробного уроку.</p>
+        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="modal-success-tg" id="modal-success-tg-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+          Перейти в Telegram
+        </a>
       </div>
     </div>
   </div>
@@ -941,10 +963,15 @@
     function onTgClick(e){if(typeof fbq!=='undefined')fbq('trackCustom','TelegramClick')}
 
     /* Modal */
-    const modal=document.getElementById('modal');
-    function openModal(){modal.classList.add('active');document.body.style.overflow='hidden';
+    var TRIALS_API='https://hyperitacademy.space/public/trials';
+    var modal=document.getElementById('modal');
+    var submitting=false;
+
+    function openModal(){
+      modal.classList.add('active');document.body.style.overflow='hidden';
       document.getElementById('modal-form').style.display='';
       document.getElementById('modal-success').style.display='none';
+      clearErrors();
     }
     function closeModal(){modal.classList.remove('active');document.body.style.overflow=''}
     modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
@@ -957,16 +984,99 @@
       });
     });
 
-    function submitForm(){
-      var name=document.getElementById('m-name').value.trim();
-      var contact=document.getElementById('m-contact').value.trim();
-      if(!name||!contact){alert('Будь ласка, заповніть усі поля');return}
-      var subject=encodeURIComponent('Заявка на пробний урок Minecraft');
-      var body=encodeURIComponent('Ім\'я дитини: '+name+'\nКонтакт: '+contact);
-      window.open('mailto:hyperitacademy@gmail.com?subject='+subject+'&body='+body,'_blank');
-      document.getElementById('modal-form').style.display='none';
-      document.getElementById('modal-success').style.display='block';
-      if(typeof fbq!=='undefined')fbq('trackCustom','FormSubmit');
+    function clearErrors(){
+      document.getElementById('modal-error').className='modal-error-banner';
+      document.getElementById('modal-error').textContent='';
+      ['parent','child','phone','email'].forEach(function(f){
+        var el=document.getElementById('m-'+f);if(el)el.classList.remove('error');
+        var err=document.getElementById('err-'+f);if(err){err.className='modal-field-error';err.textContent=''}
+      });
+    }
+    function showFieldError(field,msg){
+      var el=document.getElementById('m-'+field);if(el)el.classList.add('error');
+      var err=document.getElementById('err-'+field);if(err){err.textContent=msg;err.className='modal-field-error show'}
+    }
+    function showBanner(msg){
+      var b=document.getElementById('modal-error');b.textContent=msg;b.className='modal-error-banner show';
+    }
+    function setSubmitLoading(on){
+      var btn=document.getElementById('modal-submit-btn');
+      btn.disabled=on;
+      btn.innerHTML=on?'<span class="modal-spinner"></span>Надсилаємо...':'Надіслати заявку';
+    }
+
+    async function submitForm(){
+      if(submitting)return;
+      clearErrors();
+
+      var parentName=document.getElementById('m-parent').value.trim();
+      var childName=document.getElementById('m-child').value.trim();
+      var phone=document.getElementById('m-phone').value.trim();
+      var email=document.getElementById('m-email').value.trim();
+      var honeypot=document.getElementById('m-honeypot').value.trim();
+
+      var valid=true;
+      if(parentName.length<2){showFieldError('parent','Введіть ваше ім\'я');valid=false}
+      if(childName.length<2){showFieldError('child','Введіть ім\'я дитини');valid=false}
+      if(!phone||phone.length<10){showFieldError('phone','Введіть номер телефону');valid=false}
+      if(!email||!email.includes('@')){showFieldError('email','Введіть email');valid=false}
+      if(!valid)return;
+
+      /* Нормалізуємо телефон — додаємо +380 якщо починається з 0 */
+      if(phone.startsWith('0')&&phone.length===10)phone='+38'+phone;
+      else if(!phone.startsWith('+'))phone='+'+phone;
+
+      submitting=true;
+      setSubmitLoading(true);
+
+      var payload={
+        parent_name:parentName,
+        child_name:childName,
+        phone:phone,
+        email:email.toLowerCase(),
+        desired_course:'Minecraft',
+        source:'minecraft_landing',
+        website:honeypot,
+        utm:{
+          page:location.pathname,
+          page_url:location.href,
+          referrer:document.referrer||null,
+          submitted_at:new Date().toISOString()
+        }
+      };
+
+      try{
+        var resp=await fetch(TRIALS_API,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(payload)
+        });
+        var data=await resp.json().catch(function(){return null});
+
+        if(resp.ok&&data&&data.ok){
+          /* Якщо сервер повернув deep_link — оновимо кнопку */
+          if(data.deep_link){
+            document.getElementById('modal-success-tg-link').href=data.deep_link;
+          }
+          document.getElementById('modal-form').style.display='none';
+          document.getElementById('modal-success').style.display='block';
+          if(typeof fbq!=='undefined')fbq('trackCustom','FormSubmit');
+        }else{
+          var msg='Щось пішло не так. Спробуйте ще раз.';
+          if(data&&data.error){
+            if(data.error.code==='rate_limited')msg='Забагато спроб. Спробуйте через кілька хвилин.';
+            else if(data.error.code==='validation_error')msg=data.error.message||msg;
+            else if(data.error.code==='EMAIL_DOMAIN_BLOCKED')msg='Цей домен пошти не підтримується. Використайте іншу.';
+            else if(data.error.message)msg=data.error.message;
+          }
+          showBanner(msg);
+        }
+      }catch(e){
+        showBanner('Помилка з\'єднання. Перевірте інтернет та спробуйте ще раз.');
+      }finally{
+        submitting=false;
+        setSubmitLoading(false);
+      }
     }
 
     /* Navbar */
