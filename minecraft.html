@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft програмування для дітей 8–13 років | HyperIT Academy</title>
+  <meta name="description" content="Курс Minecraft Education для дітей. Логіка, алгоритми та власні світи в ігровій формі. Перший урок безкоштовно.">
+  <link rel="icon" href="https://hyperitacademy.com/favicon.ico?v=2">
+  <meta property="og:title" content="Minecraft програмування для дітей 8–13 років | HyperIT Academy">
+  <meta property="og:description" content="Курс Minecraft Education для дітей. Логіка, алгоритми та власні світи в ігровій формі. Перший урок безкоштовно.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hyperitacademy.com/minecraft">
+  <meta property="og:image" content="https://hyperitacademy.com/og/minecraft.svg">
+  <meta property="og:locale" content="uk_UA">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary:#261339;--accent:#8C3CDD;--accent-h:#7B2FCC;
+      --bg:#FAF8FB;--white:#FFFFFF;--text:#735C8A;--text-dark:#261339;
+      --accent-10:rgba(140,60,221,.10);--accent-20:rgba(140,60,221,.20);
+      --accent-glow:rgba(140,60,221,.4);
+      --mc-green:#5D9B47;--mc-brown:#8B6941;--mc-diamond:#4AEDD9;
+      --mc-gold:#FCD34D;--mc-emerald:#17D65B;--mc-red:#FF4444;--mc-stone:#8B8B8B;
+      --font-head:'Fredoka',sans-serif;--font-body:'Nunito',sans-serif;
+      --r-btn:24px;--r-card:20px;--r-sm:12px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);font-size:18px;color:var(--primary);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}ul{list-style:none}img{display:block;max-width:100%;height:auto}
+
+    /* ===== NAVBAR ===== */
+    .navbar{position:fixed;inset:0 0 auto 0;z-index:999;height:68px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
+    .navbar.scrolled{background:rgba(250,248,251,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(38,19,57,.08)}
+    .logo img{height:49px;width:auto}
+    .nav-cta{padding:8px 18px;background:var(--accent);color:var(--white);border-radius:var(--r-btn);font-family:var(--font-body);font-weight:700;font-size:13px;transition:background .2s,transform .2s}
+    .nav-cta:hover{background:var(--accent-h);transform:translateY(-1px)}
+    @media(min-width:600px){.nav-cta{padding:10px 22px;font-size:14px}}
+
+    /* ===== HERO ===== */
+    .hero{position:relative;min-height:100svh;background:var(--primary);display:flex;align-items:center;padding:100px 20px 0;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-30%;left:-20%;width:70%;height:80%;background:radial-gradient(ellipse at 30% 20%,rgba(140,60,221,.3)0%,transparent 60%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-20%;right:-15%;width:60%;height:70%;background:radial-gradient(ellipse at 70% 80%,rgba(74,237,217,.08)0%,transparent 50%);pointer-events:none}
+    .hero-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04)1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse 120% 80% at 50% 0%,black 0%,transparent 80%);pointer-events:none}
+
+    .pixel-block{position:absolute;width:40px;height:40px;border-radius:4px;pointer-events:none;opacity:.15;image-rendering:pixelated}
+    .pb-grass{background:var(--mc-brown);border-top:10px solid var(--mc-green);animation:float-block 12s ease-in-out infinite}
+    .pb-diamond{background:var(--mc-diamond);box-shadow:inset -4px -4px 0 rgba(0,0,0,.2),inset 4px 4px 0 rgba(255,255,255,.2);animation:float-block 10s 2s ease-in-out infinite}
+    .pb-gold{background:var(--mc-gold);box-shadow:inset -4px -4px 0 rgba(0,0,0,.2),inset 4px 4px 0 rgba(255,255,255,.2);animation:float-block 14s 1s ease-in-out infinite}
+    .pb-emerald{background:var(--mc-emerald);box-shadow:inset -4px -4px 0 rgba(0,0,0,.2),inset 4px 4px 0 rgba(255,255,255,.2);animation:float-block 11s 3s ease-in-out infinite}
+    .pb-stone{background:var(--mc-stone);box-shadow:inset -3px -3px 0 rgba(0,0,0,.15),inset 3px 3px 0 rgba(255,255,255,.1);animation:float-block 13s .5s ease-in-out infinite}
+    @keyframes float-block{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-20px) rotate(5deg)}75%{transform:translateY(10px) rotate(-3deg)}}
+
+    .hero-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
+    @media(min-width:1024px){.hero-inner{grid-template-columns:1fr 1fr}}
+    .hero-content{text-align:center}
+    @media(min-width:1024px){.hero-content{text-align:left}}
+
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(140,60,221,.12);border:1px solid rgba(140,60,221,.25);color:#C084FC;border-radius:100px;padding:6px 16px;font-size:13px;font-weight:700;margin-bottom:24px}
+    .badge-dot{width:7px;height:7px;background:#C084FC;border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
+    @keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.5);opacity:.3}}
+
+    .hero-h1{font-family:var(--font-head);font-weight:700;font-size:clamp(32px,5vw,54px);line-height:1.1;color:var(--white);margin-bottom:20px}
+    .hero-h1 .hl{background:linear-gradient(135deg,#C084FC,var(--mc-diamond));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.5);max-width:460px;margin:0 auto 32px}
+    @media(min-width:1024px){.hero-sub{margin-left:0}}
+
+    .hero-actions{display:flex;flex-direction:column;align-items:center;gap:18px}
+    @media(min-width:1024px){.hero-actions{align-items:flex-start}}
+
+    .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 34px;background:var(--accent);color:var(--white);border-radius:var(--r-btn);font-family:var(--font-body);font-weight:800;font-size:17px;border:none;cursor:pointer;box-shadow:0 4px 20px var(--accent-glow);transition:all .3s;animation:cta-glow 3s ease-in-out infinite}
+    @keyframes cta-glow{0%,100%{box-shadow:0 4px 20px var(--accent-glow),0 0 0 0 rgba(140,60,221,.3)}50%{box-shadow:0 6px 30px rgba(140,60,221,.6),0 0 0 12px rgba(140,60,221,0)}}
+    .btn-primary:hover{background:var(--accent-h);transform:translateY(-3px);box-shadow:0 12px 40px rgba(140,60,221,.5)!important;animation:none}
+    .btn-primary svg{width:20px;height:20px;flex-shrink:0}
+
+    .trust-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px}
+    @media(min-width:1024px){.trust-row{justify-content:flex-start}}
+    .trust-item{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:rgba(255,255,255,.35)}
+    .trust-item::before{content:'\2713';color:var(--mc-emerald);font-weight:900;font-size:12px}
+
+    .hero-visual{display:flex;justify-content:center}
+    .hero-visual-wrap{position:relative;width:100%;max-width:420px}
+    .hero-img-wrap{position:relative;width:100%;border-radius:var(--r-card);padding:3px;background:linear-gradient(135deg,var(--accent),var(--mc-diamond));box-shadow:0 30px 80px rgba(140,60,221,.35),0 0 60px rgba(140,60,221,.15)}
+    .hero-img{width:100%;max-height:480px;object-fit:cover;object-position:top;border-radius:calc(var(--r-card) - 3px);display:block}
+
+    .fl-badge{position:absolute;background:var(--white);border-radius:var(--r-sm);padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 12px 40px rgba(38,19,57,.25);z-index:3;white-space:nowrap}
+    .fl-badge-1{top:-16px;right:-12px;animation:float-badge 4s ease-in-out infinite}
+    .fl-badge-2{bottom:24px;left:-16px;animation:float-badge 4s 2s ease-in-out infinite}
+    @keyframes float-badge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .fl-badge-emoji{font-size:24px}.fl-badge-label{font-size:12px;font-weight:800;color:var(--primary);text-align:center}.fl-badge-sub{font-size:11px;color:var(--text);text-align:center}
+
+    /* ===== PIXEL DIVIDER ===== */
+    .pixel-divider{position:relative;height:48px;overflow:hidden;background:var(--primary)}
+    .pixel-row{position:absolute;bottom:0;left:0;right:0;display:flex;height:48px}
+    .pixel-cell{flex:1;min-width:48px;position:relative}
+    .pixel-cell::before{content:'';position:absolute;inset:0;background:var(--mc-brown);border-right:2px solid rgba(0,0,0,.1)}
+    .pixel-cell::after{content:'';position:absolute;top:0;left:0;right:0;height:40%;background:var(--mc-green);border-right:2px solid rgba(0,0,0,.1);border-bottom:3px solid rgba(0,0,0,.15)}
+    .pixel-cell:nth-child(odd)::after{height:45%}
+    .pixel-cell:nth-child(3n)::after{height:35%}
+
+    /* ===== STATS — Inventory bar ===== */
+    .stats-strip{background:linear-gradient(180deg,var(--mc-brown)0%,#6B4F30 100%);border-top:4px solid var(--mc-green);border-bottom:4px solid rgba(0,0,0,.3);position:relative}
+    .stats-strip::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,.03)0px,rgba(0,0,0,.03)48px,transparent 48px,transparent 96px);pointer-events:none}
+    .stats-inner{max-width:1160px;margin:0 auto;padding:28px 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:20px 0}
+    .stat{flex:1;min-width:140px;text-align:center;padding:8px 16px;position:relative}
+    .stat+.stat::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:1px;background:rgba(255,255,255,.12)}
+    @media(max-width:640px){.stat+.stat::before{display:none}}
+    .stat-num{font-family:var(--font-head);font-weight:700;font-size:30px;color:var(--white);display:block;line-height:1;margin-bottom:6px;text-shadow:0 0 20px rgba(140,60,221,.6),0 2px 0 rgba(0,0,0,.3)}
+    .stat-num em{font-style:normal;color:var(--mc-gold)}
+    .stat-label{font-size:13px;color:rgba(255,255,255,.55);font-weight:600}
+
+    /* ===== SHARED ===== */
+    section{padding:80px 20px}
+    .wrap{max-width:1160px;margin:0 auto}
+    .sec-tag{display:inline-flex;align-items:center;padding:5px 14px;border-radius:100px;font-size:12.5px;font-weight:800;letter-spacing:.3px;margin-bottom:14px;background:var(--accent-10);color:var(--accent)}
+    .sec-title{font-family:var(--font-head);font-weight:700;font-size:clamp(28px,3.8vw,42px);line-height:1.12;color:var(--primary);margin-bottom:48px}
+    .sec-title.center{text-align:center}
+    .sec-head{text-align:center}
+
+    /* ============================================================
+       COURSE — BENTO GRID (1 large hero + 4 mixed)
+    ============================================================ */
+    #course-program{background:var(--bg);position:relative;overflow:hidden}
+
+    .bento{
+      display:grid;gap:18px;
+      grid-template-columns:1fr;
+    }
+    @media(min-width:768px){
+      .bento{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(min-width:1100px){
+      .bento .bento-card:first-child{grid-column:1/-1}
+    }
+
+    .bento-card{
+      background:var(--white);border-radius:var(--r-card);
+      padding:28px 24px;border:1.5px solid rgba(38,19,57,.06);
+      position:relative;overflow:hidden;
+      display:flex;gap:20px;align-items:center;
+      transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;
+    }
+    .bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--c1),var(--c2))}
+    .bento-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(38,19,57,.12)}
+    @media(max-width:767px){
+      .bento-card{flex-direction:column;align-items:flex-start}
+    }
+
+    .bento-hero{--c1:var(--mc-diamond);--c2:#80E8FF}
+    .bento-sm-1{--c1:var(--mc-gold);--c2:#FFB020}
+    .bento-sm-2{--c1:var(--mc-emerald);--c2:#50EE80}
+    .bento-sm-3{--c1:var(--mc-red);--c2:#FF8844}
+    .bento-sm-4{--c1:#8C3CDD;--c2:#C084FC}
+
+    .bento-icon{
+      width:80px;height:80px;border-radius:16px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:34px;
+      background:linear-gradient(135deg,var(--c1),var(--c2));
+      box-shadow:0 4px 16px rgba(0,0,0,.08);
+    }
+    .bento-img{
+      width:120px;height:120px;border-radius:16px;object-fit:cover;flex-shrink:0;
+      box-shadow:0 4px 16px rgba(0,0,0,.08);
+    }
+    .bento-title{font-family:var(--font-head);font-weight:700;font-size:18px;color:var(--primary);margin-bottom:8px}
+    .bento-desc{font-size:14px;color:var(--text);line-height:1.6}
+
+    /* ============================================================
+       LESSONS — Inventory Slots + Showcase Bento
+    ============================================================ */
+    #lessons{background:var(--primary);position:relative;overflow:hidden}
+    #lessons::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none}
+    #lessons .sec-tag{background:rgba(192,132,252,.12);color:#C084FC}
+    #lessons .sec-title{color:var(--white)}
+
+    /* Requirements section */
+    #requirements{background:var(--primary);position:relative;overflow:hidden}
+    #requirements::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none}
+    #requirements .sec-tag{background:rgba(192,132,252,.12);color:#C084FC}
+    #requirements .sec-title{color:var(--white)}
+
+    /* Inventory slots */
+    .inv-grid{
+      display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+    }
+    .inv-slot{
+      flex:1;min-width:200px;max-width:320px;
+      background:rgba(0,0,0,.3);
+      border:3px solid rgba(255,255,255,.08);
+      border-radius:8px;padding:32px 24px;text-align:center;
+      position:relative;
+      /* pixel inventory feel */
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.03),0 8px 32px rgba(0,0,0,.2);
+      transition:all .35s cubic-bezier(.23,1,.32,1);
+    }
+    .inv-slot::before{
+      content:'';position:absolute;inset:4px;
+      border:1px solid rgba(140,60,221,.08);border-radius:5px;
+      pointer-events:none;
+    }
+    .inv-slot:hover{
+      background:rgba(140,60,221,.12);border-color:rgba(140,60,221,.3);
+      transform:translateY(-6px) scale(1.02);
+      box-shadow:inset 0 0 0 2px rgba(140,60,221,.1),0 16px 48px rgba(0,0,0,.3),0 0 30px rgba(140,60,221,.15);
+    }
+    .inv-icon{
+      font-size:48px;margin-bottom:16px;display:block;
+      filter:drop-shadow(0 4px 12px rgba(0,0,0,.3));
+      transition:transform .3s;
+    }
+    .inv-slot:hover .inv-icon{transform:scale(1.1) rotate(-3deg)}
+    .inv-label{
+      font-family:var(--font-head);font-weight:700;font-size:17px;
+      color:var(--white);margin-bottom:6px;
+    }
+    .inv-desc{font-size:13px;color:rgba(255,255,255,.4);line-height:1.55}
+
+    /* Showcase sub-heading */
+    .sub-head{
+      text-align:center;margin-bottom:32px;
+    }
+    .sub-head-title{
+      font-family:var(--font-head);font-weight:600;font-size:22px;
+      color:rgba(255,255,255,.7);
+    }
+    .sub-head-line{
+      width:60px;height:3px;background:linear-gradient(90deg,var(--accent),var(--mc-diamond));
+      border-radius:2px;margin:12px auto 0;
+    }
+
+    /* Showcase — equal 3-col grid */
+    .show-bento{
+      display:grid;grid-template-columns:1fr;gap:18px;
+    }
+    @media(min-width:640px){.show-bento{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.show-bento{grid-template-columns:repeat(3,1fr)}}
+
+    .show-card{
+      border-radius:var(--r-card);overflow:hidden;
+      border:1px solid rgba(140,60,221,.1);
+      background:rgba(255,255,255,.03);
+      transition:transform .35s cubic-bezier(.23,1,.32,1),border-color .3s;
+      display:flex;flex-direction:column;
+    }
+    .show-card:hover{transform:translateY(-5px);border-color:rgba(140,60,221,.25)}
+
+    .show-preview{
+      position:relative;overflow:hidden;flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+      background-size:cover;background-position:center;min-height:280px;
+    }
+    .show-preview::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(15,5,30,.75) 0%,rgba(15,5,30,.45) 40%,rgba(15,5,30,.65) 100%);
+      pointer-events:none;z-index:0;
+    }
+    .show-preview .show-blocks{position:relative;z-index:1}
+
+    .show-blocks{
+      position:relative;padding:16px;overflow:hidden;
+      display:flex;flex-direction:column;gap:4px;
+      width:100%;
+    }
+
+    /* Block-based programming visual */
+    .vblock{
+      display:flex;align-items:center;gap:6px;
+      padding:5px 10px;border-radius:6px;
+      font-family:var(--font-body);font-size:10px;font-weight:700;
+      color:var(--white);white-space:nowrap;
+      position:relative;width:fit-content;
+      box-shadow:0 2px 0 rgba(0,0,0,.2);
+      text-shadow:0 1px 0 rgba(0,0,0,.2);
+    }
+    .vblock-event{background:#8C3CDD}
+    .vblock-loop{background:#E67E22;padding-left:12px;border-left:4px solid #D35400}
+    .vblock-move{background:#3498DB}
+    .vblock-build{background:#2ECC71}
+    .vblock-logic{background:#F1C40F;color:#333}
+    .vblock-action{background:#E74C3C}
+    .vblock-var{background:#9B59B6}
+
+    .vblock-indent{margin-left:16px}
+
+    .vblock-input{
+      display:inline-flex;padding:1px 6px;border-radius:4px;
+      background:rgba(255,255,255,.2);font-size:9px;
+    }
+
+    .vblock-gap{height:6px}
+
+    .show-img{width:100%;height:180px;object-fit:cover;display:block}
+
+    .show-info{padding:16px 18px}
+    .show-name{font-weight:800;font-size:14px;color:var(--white);margin-bottom:3px}
+    .show-sub{font-size:12px;color:rgba(255,255,255,.35)}
+    .show-output{padding:8px 18px 14px;border-top:1px solid rgba(140,60,221,.1);background:rgba(0,0,0,.2)}
+    .show-output-label{font-size:10px;color:rgba(255,255,255,.2);margin-bottom:2px;font-family:var(--font-body)}
+    .show-output-text{font-family:var(--font-body);font-size:12px;font-weight:700;color:var(--mc-emerald)}
+
+    /* ============================================================
+       REVIEWS — 1 featured + 2 standard
+    ============================================================ */
+    #reviews{background:var(--white);position:relative;overflow:hidden}
+    #reviews::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--primary),var(--white));pointer-events:none}
+
+    .rev-layout{
+      display:grid;grid-template-columns:1fr;gap:20px;
+    }
+    @media(min-width:768px){
+      .rev-layout{grid-template-columns:repeat(3,1fr)}
+    }
+
+    .rev-card{
+      background:var(--bg);border-radius:var(--r-card);padding:28px 24px;
+      border:1.5px solid rgba(38,19,57,.05);position:relative;
+      display:flex;flex-direction:column;
+      transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .3s;
+    }
+    .rev-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(38,19,57,.1)}
+
+    .rev-card:nth-child(1) .rev-avatar{background:linear-gradient(135deg,var(--accent),var(--mc-diamond))}
+
+    .rev-qmark{display:none}
+    .stars{display:flex;gap:3px;margin-bottom:14px;justify-content:center}.star{color:#F59E0B;font-size:16px}
+    .rev-text{font-size:14.5px;line-height:1.65;color:var(--text);font-style:italic;flex:1;text-align:center;margin-bottom:0}
+    .rev-author{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:auto;padding-top:12px}
+    .rev-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--white);flex-shrink:0}
+    .rev-card:nth-child(2) .rev-avatar{background:linear-gradient(135deg,var(--mc-gold),#F97316)}
+    .rev-card:nth-child(3) .rev-avatar{background:linear-gradient(135deg,var(--mc-diamond),var(--mc-emerald))}
+    .rev-name{font-weight:800;font-size:14px;color:var(--primary);text-align:center}.rev-city{font-size:11px;color:var(--text);display:inline-flex;align-items:center;gap:4px}
+    .rev-city::before{content:'';display:inline-block;width:6px;height:6px;background:var(--mc-emerald);border-radius:50%}
+
+    /* ============================================================
+       HOW TO START — Crafting table
+    ============================================================ */
+    #start{background:var(--bg);position:relative;overflow:hidden}
+
+    .quest-log{
+      max-width:560px;margin:0 auto 48px;
+      display:flex;flex-direction:column;gap:14px;
+    }
+    .quest-step{
+      display:flex;align-items:center;gap:18px;
+      background:var(--white);border-radius:16px;padding:20px 24px;
+      border-left:5px solid var(--c);
+      box-shadow:0 4px 20px rgba(38,19,57,.06);
+      transition:transform .3s cubic-bezier(.23,1,.32,1),box-shadow .3s;
+      position:relative;
+    }
+    .quest-step:hover{transform:translateX(6px);box-shadow:0 8px 32px rgba(38,19,57,.1)}
+    .quest-step:nth-child(1){--c:var(--accent)}
+    .quest-step:nth-child(2){--c:var(--mc-diamond)}
+    .quest-step:nth-child(3){--c:var(--mc-emerald)}
+
+    .quest-icon{
+      width:52px;height:52px;border-radius:14px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:26px;background:linear-gradient(135deg,var(--c),rgba(0,0,0,.05));
+      opacity:.85;
+    }
+    .quest-num{
+      position:absolute;top:50%;left:-5px;transform:translate(-50%,-50%);
+      width:32px;height:32px;border-radius:50%;
+      background:var(--c);color:var(--white);
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-head);font-weight:700;font-size:14px;
+      box-shadow:0 0 0 4px var(--bg);
+    }
+    .quest-body{flex:1;min-width:0}
+    .quest-title{font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--primary);margin-bottom:3px}
+    .quest-desc{font-size:13.5px;color:var(--text);line-height:1.45}
+
+    .start-cta{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+    .start-fine{font-size:13px;color:var(--text);font-weight:600}
+
+    /* Mid CTA */
+    .mid-cta{text-align:center;padding:48px 20px 0}
+
+    /* ============================================================
+       FAQ
+    ============================================================ */
+    #faq{background:var(--bg);position:relative;overflow:hidden}
+    #faq::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--primary),var(--bg));pointer-events:none}
+    .faq-list{max-width:700px;margin:0 auto}
+    .faq-item{
+      border-bottom:1px solid rgba(38,19,57,.08);
+    }
+    .faq-q{
+      width:100%;background:none;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:20px 0;text-align:left;
+      font-family:var(--font-head);font-weight:600;font-size:16px;
+      color:var(--primary);transition:color .2s;
+    }
+    .faq-q:hover{color:var(--accent)}
+    .faq-arrow{
+      width:24px;height:24px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;color:var(--accent);
+      transition:transform .3s;
+    }
+    .faq-item.open .faq-arrow{transform:rotate(45deg)}
+    .faq-a{
+      max-height:0;overflow:hidden;
+      transition:max-height .35s ease,padding .35s ease;
+    }
+    .faq-item.open .faq-a{max-height:200px;padding-bottom:20px}
+    .faq-a-inner{
+      font-size:14.5px;color:var(--text);line-height:1.65;
+    }
+
+    /* ============================================================
+       FINAL CTA — Portal
+    ============================================================ */
+    .final-cta{background:var(--primary);padding:100px 20px;text-align:center;position:relative;overflow:hidden}
+    .final-cta::before{content:'';position:absolute;top:50%;left:50%;width:500px;height:500px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(140,60,221,.2),transparent 60%);pointer-events:none;animation:portal-pulse 4s ease-in-out infinite}
+    @keyframes portal-pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+    .final-cta::after{content:'';position:absolute;top:50%;left:50%;width:300px;height:300px;transform:translate(-50%,-50%);border:2px solid rgba(140,60,221,.08);border-radius:50%;pointer-events:none;animation:portal-ring 6s linear infinite}
+    @keyframes portal-ring{0%{transform:translate(-50%,-50%) scale(.8) rotate(0deg);opacity:0}50%{opacity:.3}100%{transform:translate(-50%,-50%) scale(1.5) rotate(180deg);opacity:0}}
+
+    .final-cta .wrap{position:relative;z-index:1}
+    .final-cta-title{font-family:var(--font-head);font-weight:700;font-size:clamp(24px,3.5vw,38px);line-height:1.15;color:var(--white);margin-bottom:12px}
+    .final-cta-sub{font-size:16px;color:rgba(255,255,255,.45);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+    .final-cta .start-fine{font-size:13px;color:rgba(255,255,255,.3);font-weight:600;margin-top:14px}
+
+    /* ===== FOOTER ===== */
+    footer{background:#1a0c2b;padding:44px 20px 36px;text-align:center;border-top:1px solid rgba(140,60,221,.1)}
+    .foot-logo{display:flex;align-items:center;justify-content:center;margin-bottom:22px}
+    .foot-logo img{height:43px;width:auto}
+    .foot-socials{display:flex;justify-content:center;gap:12px;margin-bottom:18px}
+    .soc-btn{width:42px;height:42px;border-radius:var(--r-sm);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:background .2s,transform .2s}
+    .soc-btn:hover{background:rgba(140,60,221,.2);transform:translateY(-2px)}
+    .foot-email{display:block;font-size:14px;color:rgba(255,255,255,.3);margin-bottom:16px;font-weight:600;transition:color .2s}
+    .foot-email:hover{color:rgba(255,255,255,.6)}
+    .foot-legal{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:14px;font-size:13px}
+    .foot-legal a{color:rgba(255,255,255,.35);font-weight:600;transition:color .2s}
+    .foot-legal a:hover{color:rgba(255,255,255,.6)}
+    .foot-legal span{color:rgba(255,255,255,.15)}
+    .foot-copy{font-size:12px;color:rgba(255,255,255,.15);font-weight:600}
+
+    /* ===== ANIMATIONS ===== */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.23,1,.32,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}
+    .reveal-d3{transition-delay:.24s}.reveal-d4{transition-delay:.32s}
+
+    ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--primary)}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),#C084FC);border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:linear-gradient(var(--accent-h),var(--accent))}
+
+    @media(max-width:640px){.pixel-block{width:28px;height:28px}.hero{padding-top:88px}section{padding:60px 16px}.stat-num{font-size:26px}}
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="https://hyperitacademy.com" class="logo">
+      <img id="logo-dark" src="https://media.hyperitacademy.space/media/20260228_014256_34712f19.png" alt="HyperIT Academy">
+      <img id="logo-light" src="https://hyperitacademy.com/assets/logo-light-B34L3nHC.webp" alt="HyperIT Academy" style="display:none">
+    </a>
+    <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="nav-cta" onclick="onTgClick(event)">Спробувати безкоштовно</a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-dots"></div>
+    <div class="pixel-block pb-grass" style="top:15%;left:5%;opacity:.12"></div>
+    <div class="pixel-block pb-diamond" style="top:25%;right:8%;opacity:.18;width:32px;height:32px"></div>
+    <div class="pixel-block pb-gold" style="top:65%;left:12%;opacity:.1;width:28px;height:28px"></div>
+    <div class="pixel-block pb-emerald" style="bottom:20%;right:15%;opacity:.14"></div>
+    <div class="pixel-block pb-stone" style="top:45%;left:25%;opacity:.06;width:24px;height:24px"></div>
+    <div class="pixel-block pb-grass" style="bottom:35%;right:25%;opacity:.08;width:36px;height:36px"></div>
+    <div class="pixel-block pb-diamond" style="top:10%;left:45%;opacity:.1;width:20px;height:20px"></div>
+    <div class="pixel-block pb-gold" style="bottom:15%;left:35%;opacity:.12;width:24px;height:24px"></div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge"><div class="badge-dot"></div>для дітей 8–13 років · пробний урок безкоштовно</div>
+        <h1 class="hero-h1">Дитина любить Minecraft? Нехай не просто грає, а <span class="hl">створює власні світи</span> з кодом!</h1>
+        <p class="hero-sub">Ваша дитина запрограмує персонажа та побудує 3D-об'єкт вже на першому безкоштовному уроці. Без складних кодів — ідеальний старт в IT.</p>
+        <div class="hero-actions">
+          <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="btn-primary" onclick="onTgClick(event)">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+            Записатися на безкоштовний урок &rarr;
+          </a>
+          <div class="trust-row">
+            <span class="trust-item">3 роки досвіду</span>
+            <span class="trust-item">80% практики</span>
+            <span class="trust-item">Перший урок безкоштовно</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-wrap">
+          <div class="fl-badge fl-badge-1"><span class="fl-badge-emoji">&#x26CF;&#xFE0F;</span><div><div class="fl-badge-label">Перший код написано!</div><div class="fl-badge-sub">Данило, 9 років</div></div></div>
+          <div class="fl-badge fl-badge-2"><span class="fl-badge-emoji">&#x1F48E;</span><div><div class="fl-badge-label">+250 XP</div><div class="fl-badge-sub">Рівень пройдено</div></div></div>
+          <div class="hero-img-wrap">
+            <img src="https://mc.hyperitacademy.com/assets/boy.webp" alt="Дитина програмує в Minecraft" class="hero-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIXEL DIVIDER -->
+  <div class="pixel-divider"><div class="pixel-row" id="pixel-row"></div></div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat"><span class="stat-num">до <em>10</em></span><span class="stat-label">учнів у групі</span></div>
+      <div class="stat"><span class="stat-num"><em>8–13</em></span><span class="stat-label">років</span></div>
+      <div class="stat"><span class="stat-num"><em>1:20</em></span><span class="stat-label">тривалість уроку</span></div>
+      <div class="stat"><span class="stat-num"><em>0&#x20B4;</em></span><span class="stat-label">пробний урок</span></div>
+    </div>
+  </div>
+
+  <!-- ===== COURSE — BENTO GRID ===== -->
+  <section id="course-program">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">На онлайн-курсі діти</span>
+        <h2 class="sec-title center">Це захоплива пригода, що відкриває двері в світ програмування</h2>
+      </div>
+      <div class="bento">
+
+        <div class="bento-card bento-hero reveal">
+          <img src="https://media.hyperitacademy.space/media/20260404_121857_5b2c2519.webp" alt="Дитина вчить блокове програмування" class="bento-img" loading="lazy">
+          <div>
+            <h3 class="bento-title">Опановують блокове програмування</h3>
+            <p class="bento-desc">Реалізують власні ідеї в Minecraft — цикли, умови та алгоритми стають зрозумілими через гру. Це фундамент, на якому будується все подальше навчання.</p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-sm-1 reveal reveal-d1">
+          <img src="https://media.hyperitacademy.space/media/20260404_123241_527d36fe.webp" alt="Математичне мислення в Minecraft" class="bento-img" loading="lazy">
+          <div>
+            <h3 class="bento-title">Математичне мислення</h3>
+            <p class="bento-desc">Координати, масштаб, геометрія — практичні розрахунки для будівництва</p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-sm-2 reveal reveal-d2">
+          <img src="https://media.hyperitacademy.space/media/20260404_123401_2c39f80c.webp" alt="Архітектура та дизайн в Minecraft" class="bento-img" loading="lazy">
+          <div>
+            <h3 class="bento-title">Архітектура та дизайн</h3>
+            <p class="bento-desc">Від ескізу до 3D — унікальні споруди та цілі міста</p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-sm-3 reveal reveal-d3">
+          <img src="https://media.hyperitacademy.space/media/20260404_124843_9a4ba363.webp" alt="Взаємодія зі світом в Minecraft" class="bento-img" loading="lazy">
+          <div>
+            <h3 class="bento-title">Взаємодія зі світом</h3>
+            <p class="bento-desc">Екосистеми, ферми — розуміння через ігрові механіки</p>
+          </div>
+        </div>
+
+        <div class="bento-card bento-sm-4 reveal reveal-d4">
+          <img src="https://media.hyperitacademy.space/media/20260404_123537_ac301f0c.webp" alt="Командна робота в Minecraft" class="bento-img" loading="lazy">
+          <div>
+            <h3 class="bento-title">Командна робота</h3>
+            <p class="bento-desc">Спільні проєкти, презентації, навички комунікації</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOWCASE — Student Projects ===== -->
+  <section id="lessons">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Результати учнів</span>
+        <h2 class="sec-title center">Що вже створили наші учні</h2>
+      </div>
+
+      <!-- Showcase bento — блочне програмування -->
+      <div class="show-bento">
+        <div class="show-card reveal">
+          <div class="show-preview" style="background-image:url('https://media.hyperitacademy.space/media/20260404_121200_4e54d669.webp')">
+            <div class="show-blocks">
+              <div class="vblock vblock-event">&#x1F3AF; коли старт натиснуто</div>
+              <div class="vblock vblock-loop">&#x1F504; повторити <span class="vblock-input">10</span> разів</div>
+              <div class="vblock vblock-build vblock-indent">&#x1F9F1; поставити блок <span class="vblock-input">камінь</span></div>
+              <div class="vblock vblock-move vblock-indent">&#x27A1;&#xFE0F; агент: вперед на <span class="vblock-input">1</span></div>
+              <div class="vblock vblock-move vblock-indent">&#x2B06;&#xFE0F; агент: вгору на <span class="vblock-input">1</span></div>
+              <div class="vblock-gap"></div>
+              <div class="vblock vblock-build">&#x1F6AA; додати ворота <span class="vblock-input">дуб</span></div>
+              <div class="vblock vblock-loop">&#x1F504; повторити <span class="vblock-input">3</span> разів</div>
+              <div class="vblock vblock-build vblock-indent">&#x1FA9F; додати вікно</div>
+            </div>
+          </div>
+          <div class="show-info">
+            <div class="show-name">Автоматичне будівництво замку</div>
+            <div class="show-sub">Данило, 9 років — побудував за тиждень</div>
+          </div>
+          <div class="show-output">
+            <div class="show-output-label">Результат</div>
+            <div class="show-output-text">&#x2714; Замок 10x5 побудовано за 3 секунди</div>
+          </div>
+        </div>
+
+        <div class="show-card reveal reveal-d1">
+          <div class="show-preview" style="background-image:url('https://media.hyperitacademy.space/media/20260404_121448_efdf7ebe.webp')">
+            <div class="show-blocks">
+              <div class="vblock vblock-event">&#x1F3AF; коли старт</div>
+              <div class="vblock vblock-action">&#x1F9D1; створити NPC <span class="vblock-input">гід</span></div>
+              <div class="vblock vblock-var">&#x1F4CC; ціль: <span class="vblock-input">алмаз</span></div>
+              <div class="vblock vblock-logic">&#x2753; якщо гравець знайшов</div>
+              <div class="vblock vblock-build vblock-indent">&#x1F381; дати нагороду</div>
+            </div>
+          </div>
+          <div class="show-info">
+            <div class="show-name">Власний ігровий світ</div>
+            <div class="show-sub">Софія, 10 років</div>
+          </div>
+          <div class="show-output">
+            <div class="show-output-label">Результат</div>
+            <div class="show-output-text">&#x2714; Квест: 5 завдань створено</div>
+          </div>
+        </div>
+
+        <div class="show-card reveal reveal-d2">
+          <div class="show-preview" style="background-image:url('https://media.hyperitacademy.space/media/20260404_121737_3ee3f0e7.webp')">
+            <div class="show-blocks">
+              <div class="vblock vblock-logic">&#x2753; якщо моб поруч</div>
+              <div class="vblock vblock-action vblock-indent">&#x1F4A5; активувати пастку</div>
+              <div class="vblock vblock-var vblock-indent">&#x2B50; очки + <span class="vblock-input">10</span></div>
+              <div class="vblock vblock-move">&#x27A1;&#xFE0F; агент: відійти</div>
+            </div>
+          </div>
+          <div class="show-info">
+            <div class="show-name">Ігрова механіка</div>
+            <div class="show-sub">Максим, 8 років</div>
+          </div>
+          <div class="show-output">
+            <div class="show-output-label">Результат</div>
+            <div class="show-output-text">&#x2714; Пастку активовано!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS — 1 featured + 2 standard ===== -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Відгуки батьків</span>
+        <h2 class="sec-title center">Що кажуть батьки</h2>
+      </div>
+      <div class="rev-layout">
+
+        <div class="rev-card reveal">
+          <div class="rev-qmark">&ldquo;</div>
+          <div class="stars">
+            <span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span>
+          </div>
+          <p class="rev-text">Син пройшов курс Minecraft і в захваті! До кінця курсу з легкістю виконував завдання з програмування. Окрема подяка викладачу — чудове вміння комунікувати з дітьми.</p>
+          <div class="rev-author">
+            <div class="rev-avatar">О</div>
+            <div><div class="rev-name">Олена К.</div><div class="rev-city">Київ</div></div>
+          </div>
+        </div>
+
+        <div class="rev-card reveal reveal-d1">
+          <div class="rev-qmark">&ldquo;</div>
+          <div class="stars">
+            <span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span>
+          </div>
+          <p class="rev-text">Думав — ну буде грати в Майнкрафт. А виявилось, що син вже розуміє цикли та умови. Тепер хоче спробувати Python!</p>
+          <div class="rev-author">
+            <div class="rev-avatar">М</div>
+            <div><div class="rev-name">Михайло Р.</div><div class="rev-city">Харків</div></div>
+          </div>
+        </div>
+
+        <div class="rev-card reveal reveal-d2">
+          <div class="rev-qmark">&ldquo;</div>
+          <div class="stars">
+            <span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span>
+          </div>
+          <p class="rev-text">Донечка обрала курс з Майнкрафту. Фінальний проєкт був космос! Перевіряла кожен код по 10 разів. Все вдалось!</p>
+          <div class="rev-author">
+            <div class="rev-avatar">Т</div>
+            <div><div class="rev-name">Тетяна С.</div><div class="rev-city">Львів</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW TO START — Quest Log ===== -->
+  <section id="start">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Як почати</span>
+        <h2 class="sec-title center">3 простих кроки до першого уроку</h2>
+      </div>
+
+      <div class="quest-log">
+        <div class="quest-step reveal">
+          <div class="quest-num">1</div>
+          <div class="quest-icon">&#x1F4F2;</div>
+          <div class="quest-body">
+            <div class="quest-title">Натисни кнопку</div>
+            <div class="quest-desc">Перейдіть у наш Telegram-бот — це займе 5 секунд</div>
+          </div>
+        </div>
+        <div class="quest-step reveal reveal-d1">
+          <div class="quest-num">2</div>
+          <div class="quest-icon">&#x1F9E9;</div>
+          <div class="quest-body">
+            <div class="quest-title">Міні-тест (2 хв)</div>
+            <div class="quest-desc">Бот визначить рівень і підбере відповідний курс</div>
+          </div>
+        </div>
+        <div class="quest-step reveal reveal-d2">
+          <div class="quest-num">3</div>
+          <div class="quest-icon">&#x1F3AE;</div>
+          <div class="quest-body">
+            <div class="quest-title">Безкоштовний урок</div>
+            <div class="quest-desc">Познайомимось з викладачем та почнемо програмувати</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="start-cta">
+        <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="btn-primary" onclick="onTgClick(event)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+          Записатися на безкоштовний урок &rarr;
+        </a>
+        <p class="start-fine">Без оплати та зобов'язань</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT YOU NEED — Requirements ===== -->
+  <section id="requirements">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Що потрібно для уроку</span>
+        <h2 class="sec-title center">Все просто — почніть вже сьогодні</h2>
+      </div>
+
+      <div class="inv-grid">
+        <div class="inv-slot reveal">
+          <span class="inv-icon">&#x1F4BB;</span>
+          <div class="inv-label">Комп'ютер або планшет</div>
+          <div class="inv-desc">Будь-який пристрій з доступом до інтернету. Нічого додатково встановлювати.</div>
+        </div>
+        <div class="inv-slot reveal reveal-d1">
+          <span class="inv-icon">&#x1F468;&#x200D;&#x1F3EB;</span>
+          <div class="inv-label">Живий викладач онлайн</div>
+          <div class="inv-desc">Досвідчений вчитель. Терпіння, увага, малі групи до 10 учнів.</div>
+        </div>
+        <div class="inv-slot reveal reveal-d2">
+          <span class="inv-icon">&#x1F680;</span>
+          <div class="inv-label">Бажання спробувати</div>
+          <div class="inv-desc">Жодного попереднього досвіду не потрібно. Програмуйте з першого уроку.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Часті запитання</span>
+        <h2 class="sec-title center">Відповіді для батьків</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            Чи потрібно купувати Minecraft?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Ні, для занять ми використовуємо Minecraft Education Edition — безкоштовну навчальну версію. Викладач допоможе з встановленням на першому уроці.</div></div>
+        </div>
+        <div class="faq-item reveal reveal-d1">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            Скільки триває курс?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Курс складається з 3 семестрів по 24 заняття. Кожне заняття в групі триває 1 годину 20 хвилин. Спочатку запишіться на безкоштовний пробний урок, щоб зрозуміти чи підходить формат.</div></div>
+        </div>
+        <div class="faq-item reveal reveal-d2">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            Дитина просто гратиме чи реально вчитиметься?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">80% уроку — практика з блочним програмуванням. Дитина вчиться логіці, алгоритмам та математиці через створення проєктів у Minecraft. Це не просто гра — це структурований курс з викладачем.</div></div>
+        </div>
+        <div class="faq-item reveal reveal-d3">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            Що буде після пробного уроку?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Після пробного уроку ми одразу починаємо навчання — підбираємо групу та зручний розклад. Жодних зобов'язань на пробному уроці.</div></div>
+        </div>
+        <div class="faq-item reveal reveal-d4">
+          <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+            Чи підійде дитині, яка ніколи не програмувала?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">Так, курс підійде для всіх — навіть без жодного досвіду в програмуванні. Блочне програмування — це візуальний спосіб навчання, де не потрібно писати текстовий код. Ідеальний старт для дітей від 8 років.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA — Portal ===== -->
+  <section class="final-cta">
+    <div class="wrap">
+      <h2 class="final-cta-title reveal">Перетворіть улюблену гру дитини на корисну навичку</h2>
+      <p class="final-cta-sub reveal reveal-d1">Запишіть дитину на безкоштовний пробний урок — без оплати та зобов'язань</p>
+      <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="btn-primary reveal reveal-d2" onclick="onTgClick(event)">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+        Записатися на безкоштовний урок &rarr;
+      </a>
+      <p class="start-fine reveal reveal-d3">Без оплати &middot; Перший урок безкоштовно</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="https://hyperitacademy.com" class="foot-logo"><img src="https://media.hyperitacademy.space/media/20260228_014256_34712f19.png" alt="HyperIT Academy" onerror="this.style.display='none'"></a>
+    <div class="foot-socials">
+      <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="soc-btn" onclick="onTgClick(event)" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg></a>
+    </div>
+    <a href="mailto:hyperitacademy@gmail.com" class="foot-email">hyperitacademy@gmail.com</a>
+    <div class="foot-legal">
+      <a href="offer.html">Публічна оферта</a>
+      <span>&middot;</span>
+      <a href="privacy.html">Політика конфіденційності</a>
+    </div>
+    <p class="foot-copy">&copy; 2026 HyperIT Academy. Усі права захищено.</p>
+  </footer>
+
+  <script>
+    /* Meta Pixel — замінити YOUR_PIXEL_ID */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    /* fbq('init','YOUR_PIXEL_ID'); fbq('track','ViewContent'); */
+
+    function onTgClick(e){if(typeof fbq!=='undefined')fbq('trackCustom','TelegramClick')}
+
+    /* Navbar */
+    const navbar=document.getElementById('navbar'),logoDark=document.getElementById('logo-dark'),logoLight=document.getElementById('logo-light');
+    window.addEventListener('scroll',()=>{const s=window.scrollY>24;navbar.classList.toggle('scrolled',s);logoDark.style.display=s?'none':'block';logoLight.style.display=s?'block':'none'},{passive:true});
+
+    /* Pixel divider */
+    const pr=document.getElementById('pixel-row'),cc=Math.ceil(window.innerWidth/48)+2;
+    for(let i=0;i<cc;i++){const c=document.createElement('div');c.className='pixel-cell';pr.appendChild(c)}
+
+    /* Scroll reveal */
+    const io=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}})},{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    /* Parallax blocks */
+    const blocks=document.querySelectorAll('.pixel-block');let ticking=false;
+    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{const y=window.scrollY;blocks.forEach((b,i)=>{const s=.02+(i*.008);b.style.transform=`translateY(${y*s}px) rotate(${y*.01*(i%2?1:-1)}deg)`});ticking=false});ticking=true}},{passive:true});
+  </script>
+  <!-- noscript pixel: uncomment and replace YOUR_PIXEL_ID when ready -->
+  <!-- <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript> -->
+</body>
+</html>
