@@ -35,10 +35,9 @@
     /* ===== NAVBAR ===== */
     .navbar{position:fixed;inset:0 0 auto 0;z-index:999;height:68px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s,backdrop-filter .4s}
     .navbar.scrolled{background:rgba(250,248,251,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(38,19,57,.08)}
-    .logo img{height:49px;width:auto}
+    .logo img{height:36px;width:auto}
     .nav-cta{padding:8px 18px;background:var(--accent);color:var(--white);border-radius:var(--r-btn);font-family:var(--font-body);font-weight:700;font-size:13px;transition:background .2s,transform .2s}
     .nav-cta:hover{background:var(--accent-h);transform:translateY(-1px)}
-    @media(max-width:399px){.nav-cta{padding:7px 14px;font-size:12px;white-space:nowrap}}
     @media(min-width:600px){.nav-cta{padding:10px 22px;font-size:14px}}
 
     /* ===== HERO ===== */
@@ -56,7 +55,7 @@
     @keyframes float-block{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-20px) rotate(5deg)}75%{transform:translateY(10px) rotate(-3deg)}}
 
     .hero-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
-    @media(min-width:1024px){.hero-inner{grid-template-columns:1fr 1fr;gap:48px}}
+    @media(min-width:1024px){.hero-inner{grid-template-columns:1fr 1fr}}
     .hero-content{text-align:center}
     @media(min-width:1024px){.hero-content{text-align:left}}
 
@@ -86,13 +85,10 @@
     .hero-visual-wrap{position:relative;width:100%;max-width:420px}
     .hero-img-wrap{position:relative;width:100%;border-radius:var(--r-card);padding:3px;background:linear-gradient(135deg,var(--accent),var(--mc-diamond));box-shadow:0 30px 80px rgba(140,60,221,.35),0 0 60px rgba(140,60,221,.15)}
     .hero-img{width:100%;max-height:480px;object-fit:cover;object-position:top;border-radius:calc(var(--r-card) - 3px);display:block}
-    @media(max-width:1023px){.hero-visual-wrap{max-width:380px}.hero-img{max-height:440px}}
-    @media(max-width:480px){.hero-visual-wrap{max-width:300px}.hero-img{max-height:360px}}
 
     .fl-badge{position:absolute;background:var(--white);border-radius:var(--r-sm);padding:10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 12px 40px rgba(38,19,57,.25);z-index:3;white-space:nowrap}
-    .fl-badge-1{top:-16px;right:-12px;animation:float-badge 4s ease-in-out infinite}
+    .fl-badge-1{top:-40px;right:-40px;animation:float-badge 4s ease-in-out infinite}
     .fl-badge-2{bottom:24px;left:-16px;animation:float-badge 4s 2s ease-in-out infinite}
-    @media(max-width:1023px){.fl-badge{display:none}}
     @keyframes float-badge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
     .fl-badge-emoji{font-size:24px}.fl-badge-label{font-size:12px;font-weight:800;color:var(--primary);text-align:center}.fl-badge-sub{font-size:11px;color:var(--text);text-align:center}
 
@@ -111,19 +107,14 @@
     .stats-inner{max-width:1160px;margin:0 auto;padding:28px 20px;display:flex;justify-content:center;flex-wrap:wrap;gap:20px 0}
     .stat{flex:1;min-width:140px;text-align:center;padding:8px 16px;position:relative}
     .stat+.stat::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:1px;background:rgba(255,255,255,.12)}
-    @media(max-width:640px){
-      .stats-inner{display:grid;grid-template-columns:1fr 1fr;gap:16px 0;padding:20px 16px}
-      .stat{min-width:auto;padding:8px 12px}
-      .stat+.stat::before{display:none}
-      .stat:nth-child(odd){border-right:1px solid rgba(255,255,255,.1)}
-    }
+    @media(max-width:640px){.stat+.stat::before{display:none}}
     .stat-num{font-family:var(--font-head);font-weight:700;font-size:30px;color:var(--white);display:block;line-height:1;margin-bottom:6px;text-shadow:0 0 20px rgba(140,60,221,.6),0 2px 0 rgba(0,0,0,.3)}
     .stat-num em{font-style:normal;color:var(--mc-gold)}
     .stat-label{font-size:13px;color:rgba(255,255,255,.55);font-weight:600}
 
     /* ===== SHARED ===== */
     section{padding:80px 20px}
-    .wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
+    .wrap{max-width:1160px;margin:0 auto}
     .sec-tag{display:inline-flex;align-items:center;padding:5px 14px;border-radius:100px;font-size:12.5px;font-weight:800;letter-spacing:.3px;margin-bottom:14px;background:var(--accent-10);color:var(--accent)}
     .sec-title{font-family:var(--font-head);font-weight:700;font-size:clamp(28px,3.8vw,42px);line-height:1.12;color:var(--primary);margin-bottom:48px}
     .sec-title.center{text-align:center}
@@ -139,40 +130,51 @@
       grid-template-columns:1fr;
     }
     @media(min-width:768px){
-      .bento{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(min-width:768px){
-      .bento .bento-card:first-child{grid-column:1/-1}
+      .bento{
+        grid-template-columns:repeat(12,1fr);
+        grid-template-rows:auto auto;
+      }
+      .bento-hero{grid-column:1/8;grid-row:1/2}
+      .bento-sm-1{grid-column:8/13;grid-row:1/2}
+      .bento-sm-2{grid-column:1/5;grid-row:2/3}
+      .bento-sm-3{grid-column:5/9;grid-row:2/3}
+      .bento-sm-4{grid-column:9/13;grid-row:2/3}
     }
 
     .bento-card{
       background:var(--white);border-radius:var(--r-card);
       padding:28px 24px;border:1.5px solid rgba(38,19,57,.06);
       position:relative;overflow:hidden;
-      display:flex;gap:20px;align-items:center;
       transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;
     }
     .bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--c1),var(--c2))}
     .bento-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(38,19,57,.12)}
+
+    /* Hero card — horizontal layout */
+    .bento-hero{
+      display:flex;gap:24px;align-items:center;
+      --c1:var(--mc-diamond);--c2:#80E8FF;
+      padding:36px 32px;
+    }
+    .bento-hero::before{height:0;width:4px;top:0;bottom:0;left:0;right:auto;height:100%}
+    .bento-hero .bento-icon{width:80px;height:80px;border-radius:20px;font-size:40px;flex-shrink:0}
+    .bento-hero .bento-title{font-size:22px;margin-bottom:10px}
+    .bento-hero .bento-desc{font-size:15px;max-width:380px}
     @media(max-width:767px){
-      .bento-card{flex-direction:column;align-items:center;text-align:center}
+      .bento-hero{flex-direction:column;align-items:flex-start}
+      .bento-hero::before{width:100%;height:4px;bottom:auto;right:0}
     }
 
-    .bento-hero{--c1:var(--mc-diamond);--c2:#80E8FF}
     .bento-sm-1{--c1:var(--mc-gold);--c2:#FFB020}
     .bento-sm-2{--c1:var(--mc-emerald);--c2:#50EE80}
     .bento-sm-3{--c1:var(--mc-red);--c2:#FF8844}
     .bento-sm-4{--c1:#8C3CDD;--c2:#C084FC}
 
     .bento-icon{
-      width:80px;height:80px;border-radius:16px;flex-shrink:0;
+      width:52px;height:52px;border-radius:14px;
       display:flex;align-items:center;justify-content:center;
-      font-size:34px;
+      font-size:26px;margin-bottom:16px;
       background:linear-gradient(135deg,var(--c1),var(--c2));
-      box-shadow:0 4px 16px rgba(0,0,0,.08);
-    }
-    .bento-img{
-      width:120px;height:120px;border-radius:16px;object-fit:cover;flex-shrink:0;
       box-shadow:0 4px 16px rgba(0,0,0,.08);
     }
     .bento-title{font-family:var(--font-head);font-weight:700;font-size:18px;color:var(--primary);margin-bottom:8px}
@@ -181,20 +183,14 @@
     /* ============================================================
        LESSONS — Inventory Slots + Showcase Bento
     ============================================================ */
-    #lessons{background:var(--primary);position:relative}
-    #lessons::before{content:'';position:absolute;top:0;left:0;right:0;height:24px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none;z-index:0}
+    #lessons{background:var(--primary);position:relative;overflow:hidden}
+    #lessons::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none}
     #lessons .sec-tag{background:rgba(192,132,252,.12);color:#C084FC}
     #lessons .sec-title{color:var(--white)}
 
-    /* Requirements section */
-    #requirements{background:var(--primary);position:relative}
-    #requirements::before{content:'';position:absolute;top:0;left:0;right:0;height:24px;background:linear-gradient(180deg,var(--bg),var(--primary));pointer-events:none;z-index:0}
-    #requirements .sec-tag{background:rgba(192,132,252,.12);color:#C084FC}
-    #requirements .sec-title{color:var(--white)}
-
     /* Inventory slots */
     .inv-grid{
-      display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+      display:flex;gap:16px;margin-bottom:56px;flex-wrap:wrap;justify-content:center;
     }
     .inv-slot{
       flex:1;min-width:200px;max-width:320px;
@@ -246,27 +242,22 @@
       display:grid;grid-template-columns:1fr;gap:18px;
     }
     @media(min-width:640px){.show-bento{grid-template-columns:repeat(2,1fr)}}
-    @media(min-width:768px){.show-bento{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1024px){.show-bento{grid-template-columns:repeat(3,1fr)}}
 
     .show-card{
       border-radius:var(--r-card);overflow:hidden;
       border:1px solid rgba(140,60,221,.1);
       background:rgba(255,255,255,.03);
       transition:transform .35s cubic-bezier(.23,1,.32,1),border-color .3s;
-      display:flex;flex-direction:column;
     }
     .show-card:hover{transform:translateY(-5px);border-color:rgba(140,60,221,.25)}
 
     .show-preview{
-      position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
-      background-size:cover;background-position:center;height:280px;flex-shrink:0;
+      position:relative;overflow:hidden;
     }
-    .show-preview::before{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(15,5,30,.75) 0%,rgba(15,5,30,.45) 40%,rgba(15,5,30,.65) 100%);
-      pointer-events:none;z-index:0;
-    }
-    .show-preview .show-blocks{position:relative;z-index:1}
+    .show-card:nth-child(1) .show-preview{background:linear-gradient(135deg,#1a0f2e,#2D1B69)}
+    .show-card:nth-child(2) .show-preview{background:linear-gradient(135deg,#0a1a0a,#052e16)}
+    .show-card:nth-child(3) .show-preview{background:linear-gradient(135deg,#1e1040,#3b1d8c)}
 
     .show-blocks{
       position:relative;padding:16px;overflow:hidden;
@@ -301,33 +292,24 @@
 
     .vblock-gap{height:6px}
 
-    .show-img{width:100%;height:180px;object-fit:cover;display:block}
-
     .show-info{padding:16px 18px}
     .show-name{font-weight:800;font-size:14px;color:var(--white);margin-bottom:3px}
     .show-sub{font-size:12px;color:rgba(255,255,255,.35)}
-    .show-output{padding:8px 18px 14px;border-top:1px solid rgba(140,60,221,.1);background:rgba(0,0,0,.2);margin-top:auto}
+    .show-output{padding:8px 18px 14px;border-top:1px solid rgba(140,60,221,.1);background:rgba(0,0,0,.2)}
     .show-output-label{font-size:10px;color:rgba(255,255,255,.2);margin-bottom:2px;font-family:var(--font-body)}
     .show-output-text{font-family:var(--font-body);font-size:12px;font-weight:700;color:var(--mc-emerald)}
 
     /* ============================================================
        REVIEWS — 1 featured + 2 standard
     ============================================================ */
-    #reviews{background:var(--white);position:relative}
-    #reviews::before{content:'';position:absolute;top:0;left:0;right:0;height:24px;background:linear-gradient(180deg,var(--primary),var(--white));pointer-events:none;z-index:0}
+    #reviews{background:var(--white);position:relative;overflow:hidden}
+    #reviews::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(180deg,var(--primary),var(--white));pointer-events:none}
 
     .rev-layout{
       display:grid;grid-template-columns:1fr;gap:20px;
     }
     @media(min-width:768px){
-      .rev-layout{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(min-width:768px){
-      .rev-layout .rev-card:first-child{grid-column:1/-1}
-    }
-    @media(min-width:1024px){
       .rev-layout{grid-template-columns:repeat(3,1fr)}
-      .rev-layout .rev-card:first-child{grid-column:auto}
     }
 
     .rev-card{
@@ -347,7 +329,7 @@
     .rev-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--white);flex-shrink:0}
     .rev-card:nth-child(2) .rev-avatar{background:linear-gradient(135deg,var(--mc-gold),#F97316)}
     .rev-card:nth-child(3) .rev-avatar{background:linear-gradient(135deg,var(--mc-diamond),var(--mc-emerald))}
-    .rev-name{font-weight:800;font-size:14px;color:var(--primary);text-align:center}.rev-author>div{text-align:center}.rev-city{font-size:11px;color:var(--text);display:inline-flex;align-items:center;justify-content:center;gap:4px}
+    .rev-name{font-weight:800;font-size:14px;color:var(--primary);text-align:center}.rev-city{font-size:11px;color:var(--text);display:inline-flex;align-items:center;gap:4px}
     .rev-city::before{content:'';display:inline-block;width:6px;height:6px;background:var(--mc-emerald);border-radius:50%}
 
     /* ============================================================
@@ -376,7 +358,7 @@
       width:52px;height:52px;border-radius:14px;flex-shrink:0;
       display:flex;align-items:center;justify-content:center;
       font-size:26px;background:linear-gradient(135deg,var(--c),rgba(0,0,0,.05));
-      opacity:.85;
+      opacity:.15;
     }
     .quest-num{
       position:absolute;top:50%;left:-5px;transform:translate(-50%,-50%);
@@ -399,10 +381,8 @@
     /* ============================================================
        FAQ
     ============================================================ */
-    #faq{background:var(--bg);position:relative;overflow:hidden}
-    #faq::before{content:'';position:absolute;top:0;left:0;right:0;height:24px;background:linear-gradient(180deg,var(--primary),var(--bg));pointer-events:none}
-    #faq .sec-head{position:relative;z-index:1}
-    .faq-list{max-width:700px;margin:0 auto;position:relative;z-index:1}
+    #faq{background:var(--bg)}
+    .faq-list{max-width:700px;margin:0 auto}
     .faq-item{
       border-bottom:1px solid rgba(38,19,57,.08);
     }
@@ -447,16 +427,12 @@
     /* ===== FOOTER ===== */
     footer{background:#1a0c2b;padding:44px 20px 36px;text-align:center;border-top:1px solid rgba(140,60,221,.1)}
     .foot-logo{display:flex;align-items:center;justify-content:center;margin-bottom:22px}
-    .foot-logo img{height:43px;width:auto}
+    .foot-logo img{height:32px;width:auto}
     .foot-socials{display:flex;justify-content:center;gap:12px;margin-bottom:18px}
     .soc-btn{width:42px;height:42px;border-radius:var(--r-sm);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:background .2s,transform .2s}
     .soc-btn:hover{background:rgba(140,60,221,.2);transform:translateY(-2px)}
     .foot-email{display:block;font-size:14px;color:rgba(255,255,255,.3);margin-bottom:16px;font-weight:600;transition:color .2s}
     .foot-email:hover{color:rgba(255,255,255,.6)}
-    .foot-legal{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:14px;font-size:13px}
-    .foot-legal a{color:rgba(255,255,255,.5);font-weight:600;transition:color .2s}
-    .foot-legal a:hover{color:rgba(255,255,255,.75)}
-    .foot-legal span{color:rgba(255,255,255,.15)}
     .foot-copy{font-size:12px;color:rgba(255,255,255,.15);font-weight:600}
 
     /* ===== ANIMATIONS ===== */
@@ -469,72 +445,7 @@
     ::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),#C084FC);border-radius:4px}
     ::-webkit-scrollbar-thumb:hover{background:linear-gradient(var(--accent-h),var(--accent))}
 
-    @media(max-width:640px){.pixel-block{width:28px;height:28px}.hero{padding-top:88px}section{padding:60px 16px}.stat-num{font-size:26px}#lessons::before,#requirements::before,#reviews::before,#faq::before{height:8px}}
-
-    /* ===== TABLET & MOBILE RESPONSIVE FIXES ===== */
-    @media(max-width:1023px){
-      .hero-inner{gap:36px}
-      .hero-content{max-width:600px;margin:0 auto}
-      .btn-primary{padding:14px 30px;font-size:16px;max-width:420px}
-      .sec-title{margin-bottom:36px}
-    }
-    @media(max-width:767px){
-      .hero-inner{gap:32px}
-      .hero-h1{font-size:clamp(28px,7vw,40px)}
-      .hero-sub{font-size:15px;margin-bottom:24px}
-      .btn-primary{width:100%;max-width:none;justify-content:center}
-      .bento-img{width:100px;height:100px}
-      .sec-title{margin-bottom:32px}
-    }
-    @media(max-width:480px){
-      .btn-primary{font-size:14px;padding:12px 16px;gap:6px}
-      .hero-badge{font-size:12px;padding:5px 12px}
-      .quest-log{margin-left:20px}
-      .quest-step{padding:16px 18px 16px 24px;gap:14px}
-      .quest-icon{width:44px;height:44px;font-size:22px}
-      .inv-slot{padding:24px 18px;min-width:140px}
-    }
-
-    .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100vh;height:100dvh;z-index:99999;background:rgba(15,5,30,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
-    .modal-overlay.active{display:flex}
-    .modal{background:var(--white);border-radius:var(--r-card);max-width:420px;width:100%;padding:36px 28px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:modal-in .3s ease;margin:auto}
-    @media(max-width:480px){.modal-overlay{padding:12px}.modal{padding:24px 16px;border-radius:16px}.modal-divider{margin:14px 0}.modal-sub{margin-bottom:16px}}
-    @keyframes modal-in{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-    .modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border:none;background:var(--bg);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text);transition:background .2s}
-    .modal-close:hover{background:rgba(140,60,221,.1)}
-    .modal-title{font-family:var(--font-head);font-weight:700;font-size:22px;color:var(--primary);text-align:center;margin-bottom:6px}
-    .modal-sub{font-size:14px;color:var(--text);text-align:center;margin-bottom:24px;line-height:1.5}
-    .modal-tg{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#2AABEE;color:var(--white);border:none;border-radius:var(--r-btn);font-family:var(--font-body);font-weight:800;font-size:16px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
-    .modal-tg:hover{background:#229ED9;transform:translateY(-2px)}
-    .modal-tg svg{width:22px;height:22px;flex-shrink:0}
-    .modal-divider{display:flex;align-items:center;gap:12px;margin:22px 0;color:var(--text);font-size:13px;font-weight:600}
-    .modal-divider::before,.modal-divider::after{content:'';flex:1;height:1px;background:rgba(38,19,57,.1)}
-    .modal-field{width:100%;padding:12px 14px;border:1.5px solid rgba(38,19,57,.1);border-radius:12px;font-family:var(--font-body);font-size:15px;color:var(--primary);margin-bottom:10px;transition:border-color .2s;outline:none}
-    .modal-field:focus{border-color:var(--accent)}
-    .modal-field::placeholder{color:rgba(115,92,138,.5)}
-    .modal-submit{width:100%;padding:12px;background:var(--accent);color:var(--white);border:none;border-radius:var(--r-btn);font-family:var(--font-body);font-weight:800;font-size:15px;cursor:pointer;transition:background .2s,transform .2s}
-    .modal-submit:hover{background:var(--accent-h);transform:translateY(-1px)}
-    .modal-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
-    .modal-field.error{border-color:var(--mc-red)}
-    .modal-field-error{font-size:12px;color:var(--mc-red);margin:-6px 0 8px 4px;display:none}
-    .modal-field-error.show{display:block}
-    .modal-error-banner{background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--mc-red);text-align:center;display:none;line-height:1.5}
-    .modal-error-banner.show{display:block}
-    .modal-spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .modal-viber-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#7360F2;color:var(--white);border:none;border-radius:var(--r-btn);font-family:var(--font-body);font-weight:800;font-size:16px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
-    .modal-viber-btn:hover{background:#5B4BD6;transform:translateY(-2px)}
-    .modal-viber-btn svg{width:22px;height:22px;flex-shrink:0}
-    .modal-form-hint{font-size:13px;color:var(--text);text-align:center;margin-bottom:16px;line-height:1.5}
-    .modal-success{display:none;text-align:center;padding:20px 0}
-    .modal-success.show{display:block}
-    .modal-success-icon{font-size:48px;margin-bottom:12px}
-    .modal-success-title{font-family:var(--font-head);font-weight:700;font-size:20px;color:var(--primary);margin-bottom:8px}
-    .modal-success-text{font-size:14px;color:var(--text);line-height:1.6}
-    .modal-success-tg{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:12px 24px;background:#2AABEE;color:var(--white);border:none;border-radius:var(--r-btn);font-family:var(--font-body);font-weight:800;font-size:15px;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none}
-    .modal-success-tg:hover{background:#229ED9;transform:translateY(-2px)}
-    .modal-success-tg svg{width:18px;height:18px;flex-shrink:0}
-    .modal-form.hidden{display:none}
+    @media(max-width:640px){.pixel-block{width:28px;height:28px}.hero{padding-top:88px}section{padding:60px 16px}.stat-num{font-size:26px}}
   </style>
 </head>
 <body>
@@ -545,7 +456,7 @@
       <img id="logo-dark" src="https://media.hyperitacademy.space/media/20260228_014256_34712f19.png" alt="HyperIT Academy">
       <img id="logo-light" src="https://hyperitacademy.com/assets/logo-light-B34L3nHC.webp" alt="HyperIT Academy" style="display:none">
     </a>
-    <a href="#" class="nav-cta">Спробувати безкоштовно</a>
+    <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="nav-cta" onclick="onTgClick(event)">Спробувати безкоштовно</a>
   </nav>
 
   <!-- ===== HERO ===== -->
@@ -566,9 +477,9 @@
         <h1 class="hero-h1">Дитина любить Minecraft? Нехай не просто грає, а <span class="hl">створює власні світи</span> з кодом!</h1>
         <p class="hero-sub">Ваша дитина запрограмує персонажа та побудує 3D-об'єкт вже на першому безкоштовному уроці. Без складних кодів — ідеальний старт в IT.</p>
         <div class="hero-actions">
-          <a href="#" class="btn-primary">
+          <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="btn-primary" onclick="onTgClick(event)">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-            Записатися на безкоштовний урок
+            Записатися на безкоштовний урок &rarr;
           </a>
           <div class="trust-row">
             <span class="trust-item">3 роки досвіду</span>
@@ -597,7 +508,7 @@
     <div class="stats-inner">
       <div class="stat"><span class="stat-num">до <em>10</em></span><span class="stat-label">учнів у групі</span></div>
       <div class="stat"><span class="stat-num"><em>8–13</em></span><span class="stat-label">років</span></div>
-      <div class="stat"><span class="stat-num"><em>60</em> хв</span><span class="stat-label">тривалість уроку</span></div>
+      <div class="stat"><span class="stat-num"><em>80%</em></span><span class="stat-label">практики</span></div>
       <div class="stat"><span class="stat-num"><em>0&#x20B4;</em></span><span class="stat-label">пробний урок</span></div>
     </div>
   </div>
@@ -612,7 +523,7 @@
       <div class="bento">
 
         <div class="bento-card bento-hero reveal">
-          <img src="https://media.hyperitacademy.space/media/20260404_121857_5b2c2519.webp" alt="Дитина вчить блокове програмування" class="bento-img" loading="lazy">
+          <div class="bento-icon">&#x1F9E9;</div>
           <div>
             <h3 class="bento-title">Опановують блокове програмування</h3>
             <p class="bento-desc">Реалізують власні ідеї в Minecraft — цикли, умови та алгоритми стають зрозумілими через гру. Це фундамент, на якому будується все подальше навчання.</p>
@@ -620,53 +531,68 @@
         </div>
 
         <div class="bento-card bento-sm-1 reveal reveal-d1">
-          <img src="https://media.hyperitacademy.space/media/20260404_123241_527d36fe.webp" alt="Математичне мислення в Minecraft" class="bento-img" loading="lazy">
-          <div>
-            <h3 class="bento-title">Математичне мислення</h3>
-            <p class="bento-desc">Координати, масштаб, геометрія — практичні розрахунки для будівництва</p>
-          </div>
+          <div class="bento-icon">&#x1F4D0;</div>
+          <h3 class="bento-title">Математичне мислення</h3>
+          <p class="bento-desc">Координати, масштаб, геометрія — практичні розрахунки для будівництва</p>
         </div>
 
         <div class="bento-card bento-sm-2 reveal reveal-d2">
-          <img src="https://media.hyperitacademy.space/media/20260404_123401_2c39f80c.webp" alt="Архітектура та дизайн в Minecraft" class="bento-img" loading="lazy">
-          <div>
-            <h3 class="bento-title">Архітектура та дизайн</h3>
-            <p class="bento-desc">Від ескізу до 3D — унікальні споруди та цілі міста</p>
-          </div>
+          <div class="bento-icon">&#x1F3D7;&#xFE0F;</div>
+          <h3 class="bento-title">Архітектура та дизайн</h3>
+          <p class="bento-desc">Від ескізу до 3D — унікальні споруди та цілі міста</p>
         </div>
 
         <div class="bento-card bento-sm-3 reveal reveal-d3">
-          <img src="https://media.hyperitacademy.space/media/20260404_124843_9a4ba363.webp" alt="Взаємодія зі світом в Minecraft" class="bento-img" loading="lazy">
-          <div>
-            <h3 class="bento-title">Взаємодія зі світом</h3>
-            <p class="bento-desc">Екосистеми, ферми — розуміння через ігрові механіки</p>
-          </div>
+          <div class="bento-icon">&#x1F30D;</div>
+          <h3 class="bento-title">Взаємодія зі світом</h3>
+          <p class="bento-desc">Екосистеми, ферми — розуміння через ігрові механіки</p>
         </div>
 
         <div class="bento-card bento-sm-4 reveal reveal-d4">
-          <img src="https://media.hyperitacademy.space/media/20260404_123537_ac301f0c.webp" alt="Командна робота в Minecraft" class="bento-img" loading="lazy">
-          <div>
-            <h3 class="bento-title">Командна робота</h3>
-            <p class="bento-desc">Спільні проєкти, презентації, навички комунікації</p>
-          </div>
+          <div class="bento-icon">&#x1F465;</div>
+          <h3 class="bento-title">Командна робота</h3>
+          <p class="bento-desc">Спільні проєкти, презентації, навички комунікації</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ===== SHOWCASE — Student Projects ===== -->
+  <!-- ===== LESSONS — Inventory + Showcase ===== -->
   <section id="lessons">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-tag">Результати учнів</span>
-        <h2 class="sec-title center">Що вже створили наші учні</h2>
+      <span class="sec-tag">Що потрібно для уроку</span>
+      <h2 class="sec-title">Все просто — почніть вже сьогодні</h2>
+
+      <!-- Inventory slots -->
+      <div class="inv-grid">
+        <div class="inv-slot reveal">
+          <span class="inv-icon">&#x1F4BB;</span>
+          <div class="inv-label">Комп'ютер або планшет</div>
+          <div class="inv-desc">Будь-який пристрій з доступом до інтернету. Нічого додатково встановлювати.</div>
+        </div>
+        <div class="inv-slot reveal reveal-d1">
+          <span class="inv-icon">&#x1F468;&#x200D;&#x1F3EB;</span>
+          <div class="inv-label">Живий викладач онлайн</div>
+          <div class="inv-desc">Досвідчений вчитель. Терпіння, увага, малі групи до 10 учнів.</div>
+        </div>
+        <div class="inv-slot reveal reveal-d2">
+          <span class="inv-icon">&#x1F680;</span>
+          <div class="inv-label">Бажання спробувати</div>
+          <div class="inv-desc">Жодного попереднього досвіду не потрібно. Програмуйте з першого уроку.</div>
+        </div>
+      </div>
+
+      <!-- Showcase sub-header -->
+      <div class="sub-head reveal">
+        <div class="sub-head-title">Що вже створили наші учні</div>
+        <div class="sub-head-line"></div>
       </div>
 
       <!-- Showcase bento — блочне програмування -->
       <div class="show-bento">
         <div class="show-card reveal">
-          <div class="show-preview" style="background-image:url('https://media.hyperitacademy.space/media/20260404_121200_4e54d669.webp')">
+          <div class="show-preview">
             <div class="show-blocks">
               <div class="vblock vblock-event">&#x1F3AF; коли старт натиснуто</div>
               <div class="vblock vblock-loop">&#x1F504; повторити <span class="vblock-input">10</span> разів</div>
@@ -690,7 +616,7 @@
         </div>
 
         <div class="show-card reveal reveal-d1">
-          <div class="show-preview" style="background-image:url('https://media.hyperitacademy.space/media/20260404_121448_efdf7ebe.webp')">
+          <div class="show-preview">
             <div class="show-blocks">
               <div class="vblock vblock-event">&#x1F3AF; коли старт</div>
               <div class="vblock vblock-action">&#x1F9D1; створити NPC <span class="vblock-input">гід</span></div>
@@ -710,7 +636,7 @@
         </div>
 
         <div class="show-card reveal reveal-d2">
-          <div class="show-preview" style="background-image:url('https://media.hyperitacademy.space/media/20260404_121737_3ee3f0e7.webp')">
+          <div class="show-preview">
             <div class="show-blocks">
               <div class="vblock vblock-logic">&#x2753; якщо моб поруч</div>
               <div class="vblock vblock-action vblock-indent">&#x1F4A5; активувати пастку</div>
@@ -757,7 +683,7 @@
           <div class="stars">
             <span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span>
           </div>
-          <p class="rev-text">Спочатку думав, що син просто гратиме в Minecraft. А тепер сам пояснює мені, як це все працює. І каже — тату, хочу більше!</p>
+          <p class="rev-text">Думав — ну буде грати в Майнкрафт. А виявилось, що син вже розуміє цикли та умови. Тепер хоче спробувати Python!</p>
           <div class="rev-author">
             <div class="rev-avatar">М</div>
             <div><div class="rev-name">Михайло Р.</div><div class="rev-city">Харків</div></div>
@@ -769,7 +695,7 @@
           <div class="stars">
             <span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span><span class="star">&#x2605;</span>
           </div>
-          <p class="rev-text">Не думала, що дочка так серйозно відноситиметься. Переробляла по десять разів — поки не вийде ідеально. Горджуся!</p>
+          <p class="rev-text">Донечка обрала курс з Майнкрафту. Фінальний проєкт був космос! Перевіряла кожен код по 10 разів. Все вдалось!</p>
           <div class="rev-author">
             <div class="rev-avatar">Т</div>
             <div><div class="rev-name">Тетяна С.</div><div class="rev-city">Львів</div></div>
@@ -780,78 +706,13 @@
     </div>
   </section>
 
-  <!-- ===== HOW TO START — Quest Log ===== -->
-  <section id="start">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-tag">Як почати</span>
-        <h2 class="sec-title center">3 простих кроки до першого уроку</h2>
-      </div>
-
-      <div class="quest-log">
-        <div class="quest-step reveal">
-          <div class="quest-num">1</div>
-          <div class="quest-icon">&#x1F4F2;</div>
-          <div class="quest-body">
-            <div class="quest-title">Натисни кнопку</div>
-            <div class="quest-desc">Перейдіть у наш Telegram-бот — це займе 5 секунд</div>
-          </div>
-        </div>
-        <div class="quest-step reveal reveal-d1">
-          <div class="quest-num">2</div>
-          <div class="quest-icon">&#x1F9E9;</div>
-          <div class="quest-body">
-            <div class="quest-title">Міні-тест (2 хв)</div>
-            <div class="quest-desc">Бот визначить рівень і підбере відповідний курс</div>
-          </div>
-        </div>
-        <div class="quest-step reveal reveal-d2">
-          <div class="quest-num">3</div>
-          <div class="quest-icon">&#x1F3AE;</div>
-          <div class="quest-body">
-            <div class="quest-title">Безкоштовний урок</div>
-            <div class="quest-desc">Познайомимось з викладачем та почнемо програмувати</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="start-cta">
-        <a href="#" class="btn-primary">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-          Записатися на безкоштовний урок
-        </a>
-        <p class="start-fine">Без оплати та зобов'язань</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== WHAT YOU NEED — Requirements ===== -->
-  <section id="requirements">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-tag">Що потрібно для уроку</span>
-        <h2 class="sec-title center">Все просто — почніть вже сьогодні</h2>
-      </div>
-
-      <div class="inv-grid">
-        <div class="inv-slot reveal">
-          <span class="inv-icon">&#x1F4BB;</span>
-          <div class="inv-label">Комп'ютер або планшет</div>
-          <div class="inv-desc">Будь-який пристрій з доступом до інтернету. Нічого додатково встановлювати.</div>
-        </div>
-        <div class="inv-slot reveal reveal-d1">
-          <span class="inv-icon">&#x1F468;&#x200D;&#x1F3EB;</span>
-          <div class="inv-label">Живий викладач онлайн</div>
-          <div class="inv-desc">Досвідчений вчитель. Терпіння, увага, малі групи до 10 учнів.</div>
-        </div>
-        <div class="inv-slot reveal reveal-d2">
-          <span class="inv-icon">&#x1F680;</span>
-          <div class="inv-label">Бажання спробувати</div>
-          <div class="inv-desc">Жодного попереднього досвіду не потрібно. Програмуйте з першого уроку.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Mid CTA after reviews -->
+  <div class="mid-cta">
+    <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="btn-primary" onclick="onTgClick(event)">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Записатися на безкоштовний урок &rarr;
+    </a>
+  </div>
 
   <!-- ===== FAQ ===== -->
   <section id="faq">
@@ -866,7 +727,7 @@
             Чи потрібно купувати Minecraft?
             <span class="faq-arrow">+</span>
           </button>
-          <div class="faq-a"><div class="faq-a-inner">Ні, для занять ми використовуємо Minecraft Education Edition — навчальну версію. Викладач допоможе з встановленням на першому уроці.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Ні, для занять ми використовуємо Minecraft Education Edition — безкоштовну навчальну версію. Викладач допоможе з встановленням на першому уроці.</div></div>
         </div>
         <div class="faq-item reveal reveal-d1">
           <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
@@ -900,14 +761,53 @@
     </div>
   </section>
 
+  <!-- ===== HOW TO START — Quest Log ===== -->
+  <section id="start">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-tag">Старт навчання</span>
+        <h2 class="sec-title center">Нехай ваша дитина спробує себе в ролі програміста!</h2>
+      </div>
+
+      <div class="quest-log">
+        <div class="quest-step reveal">
+          <div class="quest-num">1</div>
+          <div class="quest-icon">&#x1F4F2;</div>
+          <div class="quest-body">
+            <div class="quest-title">Натисни кнопку</div>
+            <div class="quest-desc">Перейдіть у наш Telegram-бот — це займе 5 секунд</div>
+          </div>
+        </div>
+        <div class="quest-step reveal reveal-d1">
+          <div class="quest-num">2</div>
+          <div class="quest-icon">&#x1F9E9;</div>
+          <div class="quest-body">
+            <div class="quest-title">Міні-тест (2 хв)</div>
+            <div class="quest-desc">Бот визначить рівень і підбере відповідний курс</div>
+          </div>
+        </div>
+        <div class="quest-step reveal reveal-d2">
+          <div class="quest-num">3</div>
+          <div class="quest-icon">&#x1F3AE;</div>
+          <div class="quest-body">
+            <div class="quest-title">Безкоштовний урок</div>
+            <div class="quest-desc">Познайомимось з викладачем та почнемо програмувати</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA removed from this section — present in final CTA below -->
+    </div>
+  </section>
+
   <!-- ===== FINAL CTA — Portal ===== -->
   <section class="final-cta">
     <div class="wrap">
       <h2 class="final-cta-title reveal">Перетворіть улюблену гру дитини на корисну навичку</h2>
       <p class="final-cta-sub reveal reveal-d1">Запишіть дитину на безкоштовний пробний урок — без оплати та зобов'язань</p>
-      <a href="#" class="btn-primary reveal reveal-d2">
+      <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="btn-primary reveal reveal-d2" onclick="onTgClick(event)">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-        Записатися на безкоштовний урок
+        Записатися на безкоштовний урок &rarr;
       </a>
       <p class="start-fine reveal reveal-d3">Без оплати &middot; Перший урок безкоштовно</p>
     </div>
@@ -917,55 +817,13 @@
   <footer>
     <a href="https://hyperitacademy.com" class="foot-logo"><img src="https://media.hyperitacademy.space/media/20260228_014256_34712f19.png" alt="HyperIT Academy" onerror="this.style.display='none'"></a>
     <div class="foot-socials">
-      <a href="https://t.me/HyperIT_Academy_bot" class="soc-btn" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg></a>
+      <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" onclick="onTgClick(event)" class="soc-btn" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" onclick="onTgClick(event)" class="soc-btn" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+      <a href="https://t.me/HyperIT_Academy_bot?start=minecraft" class="soc-btn" onclick="onTgClick(event)" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg></a>
     </div>
     <a href="mailto:hyperitacademy@gmail.com" class="foot-email">hyperitacademy@gmail.com</a>
-    <div class="foot-legal">
-      <a href="offer.html">Публічна оферта</a>
-      <span>&middot;</span>
-      <a href="privacy.html">Політика конфіденційності</a>
-    </div>
     <p class="foot-copy">&copy; 2026 HyperIT Academy. Усі права захищено.</p>
   </footer>
-
-  <!-- MODAL — direct child of body, before script so JS can find it -->
-  <div class="modal-overlay" id="modal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <div class="modal-form" id="modal-form">
-        <div class="modal-title">Записатися на пробний урок</div>
-        <p class="modal-sub">Ми перенаправимо вас у Telegram-бот, де можна обрати зручний час для безкоштовного уроку</p>
-        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="modal-tg" onclick="onTgClick(event)">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-          Продовжити в Telegram
-        </a>
-        <div class="modal-divider">Немає Telegram?</div>
-        <a href="viber://chat?number=%2B380938013422" class="modal-viber-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 2.492c-.234-.12-5.532-2.153-8.317-2.153-2.785 0-8.083 2.033-8.317 2.153C2.145 3.356 0 8.028 0 12.42c0 3.012 1.195 5.75 3.275 7.79.156.28.476.996.607 1.77.08.473.108.89.134 1.29.025.39.048.76.134 1.04.046.15.116.303.272.41a.65.65 0 00.408.12c.25 0 .608-.14 1.07-.392 1.098-.6 2.396-1.67 2.992-2.13.367-.047.744-.08 1.108-.08 2.785 0 8.083-2.033 8.317-2.153C19.855 19.224 24 14.552 24 10.16c0-4.392-2.145-7.728-3.683-7.668zM18.3 14.88c-.274.637-.774 1.14-1.37 1.487-.498.29-1.08.45-1.688.45-.387 0-.78-.063-1.17-.19a15.146 15.146 0 01-2.025-.89 13.7 13.7 0 01-1.803-1.19 13.694 13.694 0 01-1.538-1.54 13.708 13.708 0 01-1.19-1.802 15.125 15.125 0 01-.89-2.025 3.93 3.93 0 01-.19-1.17c0-.608.16-1.19.45-1.688a2.86 2.86 0 011.487-1.37c.247-.108.51-.165.774-.165.157 0 .314.03.458.093.185.08.34.22.446.4l1.2 1.96c.135.22.187.48.147.734a1.24 1.24 0 01-.376.65l-.502.465a.37.37 0 00-.115.28c.007.07.03.14.064.2.253.48.593.98 1.023 1.48.43.5.91.934 1.45 1.3.06.04.13.06.2.067a.37.37 0 00.28-.115l.465-.502c.17-.183.4-.305.65-.376a1.14 1.14 0 01.734.147l1.96 1.2c.18.107.32.26.4.446a1.1 1.1 0 01.093.458c0 .264-.057.527-.165.774z"/></svg>
-          Написати в Viber
-        </a>
-        <div class="modal-divider">Або залишайте заявку і ми напишемо вам на електронну пошту</div>
-        <div class="modal-error-banner" id="modal-error"></div>
-        <input type="text" class="modal-field" id="m-parent" placeholder="Ваше ім'я (батько/мати)">
-        <div class="modal-field-error" id="err-parent"></div>
-        <input type="text" class="modal-field" id="m-child" placeholder="Ім'я дитини">
-        <div class="modal-field-error" id="err-child"></div>
-        <input type="email" class="modal-field" id="m-email" placeholder="Email">
-        <div class="modal-field-error" id="err-email"></div>
-        <input type="text" class="modal-field" id="m-honeypot" style="position:absolute;left:-9999px;opacity:0;height:0" tabindex="-1" autocomplete="off">
-        <button class="modal-submit" id="modal-submit-btn" onclick="submitForm()">Надіслати заявку</button>
-      </div>
-      <div class="modal-success" id="modal-success">
-        <div class="modal-success-icon">&#x2705;</div>
-        <div class="modal-success-title">Заявку надіслано!</div>
-        <p class="modal-success-text">Ми зв'яжемося з вами найближчим часом, щоб обрати зручний час для пробного уроку.</p>
-        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="modal-success-tg" id="modal-success-tg-link">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-          Перейти в Telegram
-        </a>
-      </div>
-    </div>
-  </div>
 
   <script>
     /* Meta Pixel — замінити YOUR_PIXEL_ID */
@@ -973,116 +831,6 @@
     /* fbq('init','YOUR_PIXEL_ID'); fbq('track','ViewContent'); */
 
     function onTgClick(e){if(typeof fbq!=='undefined')fbq('trackCustom','TelegramClick')}
-
-    /* Modal */
-    var TRIALS_API='https://hyperitacademy.space/public/trials';
-    var modal=document.getElementById('modal');
-    var submitting=false;
-
-    function openModal(){
-      modal.classList.add('active');document.body.style.overflow='hidden';
-      document.getElementById('modal-form').style.display='';
-      document.getElementById('modal-success').style.display='none';
-      clearErrors();
-    }
-    function closeModal(){modal.classList.remove('active');document.body.style.overflow=''}
-    modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
-
-    document.querySelectorAll('.btn-primary, .nav-cta').forEach(function(btn){
-      btn.addEventListener('click',function(e){
-        e.preventDefault();e.stopPropagation();
-        openModal();
-      });
-    });
-
-    function clearErrors(){
-      document.getElementById('modal-error').className='modal-error-banner';
-      document.getElementById('modal-error').textContent='';
-      ['parent','child','email'].forEach(function(f){
-        var el=document.getElementById('m-'+f);if(el)el.classList.remove('error');
-        var err=document.getElementById('err-'+f);if(err){err.className='modal-field-error';err.textContent=''}
-      });
-    }
-    function showFieldError(field,msg){
-      var el=document.getElementById('m-'+field);if(el)el.classList.add('error');
-      var err=document.getElementById('err-'+field);if(err){err.textContent=msg;err.className='modal-field-error show'}
-    }
-    function showBanner(msg){
-      var b=document.getElementById('modal-error');b.textContent=msg;b.className='modal-error-banner show';
-    }
-    function setSubmitLoading(on){
-      var btn=document.getElementById('modal-submit-btn');
-      btn.disabled=on;
-      btn.innerHTML=on?'<span class="modal-spinner"></span>Надсилаємо...':'Надіслати заявку';
-    }
-
-    async function submitForm(){
-      if(submitting)return;
-      clearErrors();
-
-      var parentName=document.getElementById('m-parent').value.trim();
-      var childName=document.getElementById('m-child').value.trim();
-      var email=document.getElementById('m-email').value.trim();
-      var honeypot=document.getElementById('m-honeypot').value.trim();
-
-      var valid=true;
-      if(parentName.length<2){showFieldError('parent','Введіть ваше ім\'я');valid=false}
-      if(childName.length<2){showFieldError('child','Введіть ім\'я дитини');valid=false}
-      if(!email||!email.includes('@')){showFieldError('email','Введіть email');valid=false}
-      if(!valid)return;
-
-      submitting=true;
-      setSubmitLoading(true);
-
-      var payload={
-        parent_name:parentName,
-        child_name:childName,
-        email:email.toLowerCase(),
-        desired_course:'Minecraft',
-        source:'minecraft_landing',
-        website:honeypot,
-        utm:{
-          page:location.pathname,
-          page_url:location.href,
-          referrer:document.referrer||null,
-          submitted_at:new Date().toISOString()
-        }
-      };
-
-      try{
-        var resp=await fetch(TRIALS_API,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(payload)
-        });
-        var data=await resp.json().catch(function(){return null});
-
-        if(resp.ok&&data&&data.ok){
-          /* Якщо сервер повернув deep_link — оновимо кнопку */
-          if(data.deep_link){
-            document.getElementById('modal-success-tg-link').href=data.deep_link;
-          }
-          document.getElementById('modal-form').style.display='none';
-          document.getElementById('modal-success').style.display='block';
-          if(typeof fbq!=='undefined')fbq('trackCustom','FormSubmit');
-        }else{
-          var msg='Щось пішло не так. Спробуйте ще раз.';
-          if(data&&data.error){
-            if(data.error.code==='rate_limited')msg='Забагато спроб. Спробуйте через кілька хвилин.';
-            else if(data.error.code==='validation_error')msg=data.error.message||msg;
-            else if(data.error.code==='EMAIL_DOMAIN_BLOCKED')msg='Цей домен пошти не підтримується. Використайте іншу.';
-            else if(data.error.message)msg=data.error.message;
-          }
-          showBanner(msg);
-        }
-      }catch(e){
-        showBanner('Помилка з\'єднання. Перевірте інтернет та спробуйте ще раз.');
-      }finally{
-        submitting=false;
-        setSubmitLoading(false);
-      }
-    }
 
     /* Navbar */
     const navbar=document.getElementById('navbar'),logoDark=document.getElementById('logo-dark'),logoLight=document.getElementById('logo-light');
@@ -1100,8 +848,6 @@
     const blocks=document.querySelectorAll('.pixel-block');let ticking=false;
     window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{const y=window.scrollY;blocks.forEach((b,i)=>{const s=.02+(i*.008);b.style.transform=`translateY(${y*s}px) rotate(${y*.01*(i%2?1:-1)}deg)`});ticking=false});ticking=true}},{passive:true});
   </script>
-  <!-- noscript pixel: uncomment and replace YOUR_PIXEL_ID when ready -->
-  <!-- <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript> -->
-
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
 </body>
 </html>
