@@ -949,8 +949,6 @@
         <div class="modal-field-error" id="err-parent"></div>
         <input type="text" class="modal-field" id="m-child" placeholder="Ім'я дитини">
         <div class="modal-field-error" id="err-child"></div>
-        <input type="tel" class="modal-field" id="m-phone" placeholder="Телефон (+380...)">
-        <div class="modal-field-error" id="err-phone"></div>
         <input type="email" class="modal-field" id="m-email" placeholder="Email">
         <div class="modal-field-error" id="err-email"></div>
         <input type="text" class="modal-field" id="m-honeypot" style="position:absolute;left:-9999px;opacity:0;height:0" tabindex="-1" autocomplete="off">
@@ -1000,7 +998,7 @@
     function clearErrors(){
       document.getElementById('modal-error').className='modal-error-banner';
       document.getElementById('modal-error').textContent='';
-      ['parent','child','phone','email'].forEach(function(f){
+      ['parent','child','email'].forEach(function(f){
         var el=document.getElementById('m-'+f);if(el)el.classList.remove('error');
         var err=document.getElementById('err-'+f);if(err){err.className='modal-field-error';err.textContent=''}
       });
@@ -1024,20 +1022,14 @@
 
       var parentName=document.getElementById('m-parent').value.trim();
       var childName=document.getElementById('m-child').value.trim();
-      var phone=document.getElementById('m-phone').value.trim();
       var email=document.getElementById('m-email').value.trim();
       var honeypot=document.getElementById('m-honeypot').value.trim();
 
       var valid=true;
       if(parentName.length<2){showFieldError('parent','Введіть ваше ім\'я');valid=false}
       if(childName.length<2){showFieldError('child','Введіть ім\'я дитини');valid=false}
-      if(!phone||phone.length<10){showFieldError('phone','Введіть номер телефону');valid=false}
       if(!email||!email.includes('@')){showFieldError('email','Введіть email');valid=false}
       if(!valid)return;
-
-      /* Нормалізуємо телефон — додаємо +380 якщо починається з 0 */
-      if(phone.startsWith('0')&&phone.length===10)phone='+38'+phone;
-      else if(!phone.startsWith('+'))phone='+'+phone;
 
       submitting=true;
       setSubmitLoading(true);
@@ -1045,7 +1037,6 @@
       var payload={
         parent_name:parentName,
         child_name:childName,
-        phone:phone,
         email:email.toLowerCase(),
         desired_course:'Minecraft',
         source:'minecraft_landing',
