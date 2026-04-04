@@ -470,6 +470,23 @@
     ::-webkit-scrollbar-thumb:hover{background:linear-gradient(var(--accent-h),var(--accent))}
 
     @media(max-width:640px){.pixel-block{width:28px;height:28px}.hero{padding-top:88px}section{padding:60px 16px}.stat-num{font-size:26px}}
+
+    /* ===== TABLET & MOBILE RESPONSIVE FIXES ===== */
+    @media(max-width:767px){
+      .hero-inner{gap:32px}
+      .hero-h1{font-size:clamp(28px,7vw,40px)}
+      .hero-sub{font-size:15px;margin-bottom:24px}
+      .btn-primary{padding:14px 28px;font-size:16px;width:100%;justify-content:center}
+      .bento-img{width:100px;height:100px}
+      .sec-title{margin-bottom:32px}
+    }
+    @media(max-width:480px){
+      .hero-badge{font-size:12px;padding:5px 12px}
+      .quest-step{padding:16px 18px 16px 24px;gap:14px}
+      .quest-icon{width:44px;height:44px;font-size:22px}
+      .inv-slot{padding:24px 18px;min-width:140px}
+    }
+
     .modal-overlay{position:fixed;inset:0;z-index:9999;background:rgba(15,5,30,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
     .modal-overlay.active{display:flex}
     .modal{background:var(--white);border-radius:var(--r-card);max-width:420px;width:100%;padding:36px 28px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:modal-in .3s ease}
@@ -508,7 +525,7 @@
       <img id="logo-dark" src="https://media.hyperitacademy.space/media/20260228_014256_34712f19.png" alt="HyperIT Academy">
       <img id="logo-light" src="https://hyperitacademy.com/assets/logo-light-B34L3nHC.webp" alt="HyperIT Academy" style="display:none">
     </a>
-    <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="nav-cta" onclick="onTgClick(event)">Спробувати безкоштовно</a>
+    <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="nav-cta">Спробувати безкоштовно</a>
   </nav>
 
   <!-- ===== HERO ===== -->
@@ -529,7 +546,7 @@
         <h1 class="hero-h1">Дитина любить Minecraft? Нехай не просто грає, а <span class="hl">створює власні світи</span> з кодом!</h1>
         <p class="hero-sub">Ваша дитина запрограмує персонажа та побудує 3D-об'єкт вже на першому безкоштовному уроці. Без складних кодів — ідеальний старт в IT.</p>
         <div class="hero-actions">
-          <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="btn-primary" onclick="onTgClick(event)">
+          <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="btn-primary">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
             Записатися на безкоштовний урок &rarr;
           </a>
@@ -779,7 +796,7 @@
       </div>
 
       <div class="start-cta">
-        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="btn-primary" onclick="onTgClick(event)">
+        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="btn-primary">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
           Записатися на безкоштовний урок &rarr;
         </a>
@@ -868,7 +885,7 @@
     <div class="wrap">
       <h2 class="final-cta-title reveal">Перетворіть улюблену гру дитини на корисну навичку</h2>
       <p class="final-cta-sub reveal reveal-d1">Запишіть дитину на безкоштовний пробний урок — без оплати та зобов'язань</p>
-      <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="btn-primary reveal reveal-d2" onclick="onTgClick(event)">
+      <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="btn-primary reveal reveal-d2">
 
   <!-- MODAL -->
   <div class="modal-overlay" id="modal">
@@ -925,23 +942,27 @@
 
     /* Modal */
     const modal=document.getElementById('modal');
-    function openModal(e){e.preventDefault();modal.classList.add('active');document.body.style.overflow='hidden'}
+    function openModal(){modal.classList.add('active');document.body.style.overflow='hidden';
+      document.getElementById('modal-form').style.display='';
+      document.getElementById('modal-success').style.display='none';
+    }
     function closeModal(){modal.classList.remove('active');document.body.style.overflow=''}
-    modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+    modal.addEventListener('click',function(e){if(e.target===modal)closeModal()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
 
-    // Intercept all CTA buttons (except modal-internal ones)
-    document.querySelectorAll('.btn-primary, .nav-cta').forEach(btn=>{
-      btn.addEventListener('click',e=>{openModal(e)});
-      btn.removeAttribute('href');btn.style.cursor='pointer';
+    document.querySelectorAll('.btn-primary, .nav-cta').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        e.preventDefault();e.stopPropagation();
+        openModal();
+      });
     });
 
     function submitForm(){
-      const name=document.getElementById('m-name').value.trim();
-      const contact=document.getElementById('m-contact').value.trim();
+      var name=document.getElementById('m-name').value.trim();
+      var contact=document.getElementById('m-contact').value.trim();
       if(!name||!contact){alert('Будь ласка, заповніть усі поля');return}
-      const subject=encodeURIComponent('Заявка на пробний урок Minecraft');
-      const body=encodeURIComponent('Ім\'я дитини: '+name+'\nКонтакт: '+contact);
+      var subject=encodeURIComponent('Заявка на пробний урок Minecraft');
+      var body=encodeURIComponent('Ім\'я дитини: '+name+'\nКонтакт: '+contact);
       window.open('mailto:hyperitacademy@gmail.com?subject='+subject+'&body='+body,'_blank');
       document.getElementById('modal-form').style.display='none';
       document.getElementById('modal-success').style.display='block';
