@@ -886,31 +886,6 @@
       <h2 class="final-cta-title reveal">Перетворіть улюблену гру дитини на корисну навичку</h2>
       <p class="final-cta-sub reveal reveal-d1">Запишіть дитину на безкоштовний пробний урок — без оплати та зобов'язань</p>
       <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="btn-primary reveal reveal-d2">
-
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <div class="modal-form" id="modal-form">
-        <div class="modal-title">Записатися на пробний урок</div>
-        <p class="modal-sub">Ми перенаправимо вас у Telegram-бот, де можна обрати зручний час для безкоштовного уроку</p>
-        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="modal-tg" onclick="onTgClick(event)">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-          Продовжити в Telegram
-        </a>
-        <div class="modal-divider">Немає Telegram?</div>
-        <input type="text" class="modal-field" id="m-name" placeholder="Імʼя дитини" required>
-        <input type="text" class="modal-field" id="m-contact" placeholder="Email або номер Viber" required>
-        <button class="modal-submit" onclick="submitForm()">Надіслати заявку</button>
-        <div class="modal-viber">Або напишіть нам у <a href="viber://chat?number=%2B380938013422">Viber</a></div>
-      </div>
-      <div class="modal-success" id="modal-success">
-        <div class="modal-success-icon">&#x2705;</div>
-        <div class="modal-success-title">Заявку надіслано!</div>
-        <p class="modal-success-text">Ми звʼяжемося з вами найближчим часом, щоб обрати зручний час для пробного уроку.</p>
-      </div>
-    </div>
-  </div>
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
         Записатися на безкоштовний урок &rarr;
       </a>
@@ -987,5 +962,30 @@
   </script>
   <!-- noscript pixel: uncomment and replace YOUR_PIXEL_ID when ready -->
   <!-- <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript> -->
+
+  <!-- MODAL — must be direct child of body for proper z-index -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-form" id="modal-form">
+        <div class="modal-title">Записатися на пробний урок</div>
+        <p class="modal-sub">Ми перенаправимо вас у Telegram-бот, де можна обрати зручний час для безкоштовного уроку</p>
+        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="modal-tg" onclick="onTgClick(event)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+          Продовжити в Telegram
+        </a>
+        <div class="modal-divider">Немає Telegram?</div>
+        <input type="text" class="modal-field" id="m-name" placeholder="Ім'я дитини" required>
+        <input type="text" class="modal-field" id="m-contact" placeholder="Email або номер Viber" required>
+        <button class="modal-submit" onclick="submitForm()">Надіслати заявку</button>
+        <div class="modal-viber">Або напишіть нам у <a href="viber://chat?number=%2B380938013422">Viber</a></div>
+      </div>
+      <div class="modal-success" id="modal-success">
+        <div class="modal-success-icon">&#x2705;</div>
+        <div class="modal-success-title">Заявку надіслано!</div>
+        <p class="modal-success-text">Ми зв'яжемося з вами найближчим часом, щоб обрати зручний час для пробного уроку.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
