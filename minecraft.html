@@ -14,7 +14,8 @@
   <meta property="og:image" content="https://hyperitacademy.com/og/minecraft.svg">
   <meta property="og:locale" content="uk_UA">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preload" as="image" href="https://mc.hyperitacademy.com/assets/boy.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://media.hyperitacademy.space" crossorigin>
+  <link rel="preload" as="image" href="https://media.hyperitacademy.space/media/20260406_122737_14954884.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap">
@@ -587,7 +588,7 @@
           <div class="fl-badge fl-badge-1"><span class="fl-badge-emoji">&#x26CF;&#xFE0F;</span><div><div class="fl-badge-label">Перший код написано!</div><div class="fl-badge-sub">Данило, 9 років</div></div></div>
           <div class="fl-badge fl-badge-2"><span class="fl-badge-emoji">&#x1F48E;</span><div><div class="fl-badge-label">+250 XP</div><div class="fl-badge-sub">Рівень пройдено</div></div></div>
           <div class="hero-img-wrap">
-            <img src="https://mc.hyperitacademy.com/assets/boy.webp" alt="Дитина програмує в Minecraft" class="hero-img" fetchpriority="high">
+            <img src="https://media.hyperitacademy.space/media/20260406_122737_14954884.webp" alt="Дитина програмує в Minecraft" class="hero-img" fetchpriority="high">
           </div>
         </div>
       </div>
@@ -973,9 +974,9 @@
   </div>
 
   <script>
-    /* Meta Pixel — замінити YOUR_PIXEL_ID */
+    /* Meta Pixel */
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    /* fbq('init','YOUR_PIXEL_ID'); fbq('track','ViewContent'); */
+    fbq('init','1011325767623678'); fbq('track','PageView');
 
     function onTgClick(e){if(typeof fbq!=='undefined')fbq('trackCustom','TelegramClick')}
 
@@ -1070,7 +1071,7 @@
           }
           document.getElementById('modal-form').style.display='none';
           document.getElementById('modal-success').style.display='block';
-          if(typeof fbq!=='undefined')fbq('trackCustom','FormSubmit');
+          if(typeof fbq!=='undefined')fbq('track','Lead');
         }else{
           var msg='Щось пішло не так. Спробуйте ще раз.';
           if(data&&data.error){
@@ -1207,8 +1208,7 @@
   }
   </script>
 
-  <!-- noscript pixel: uncomment and replace YOUR_PIXEL_ID when ready -->
-  <!-- <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript> -->
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1011325767623678&ev=PageView&noscript=1"/></noscript>
 
 </body>
 </html>
