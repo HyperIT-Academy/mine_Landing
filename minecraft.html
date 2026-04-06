@@ -14,100 +14,12 @@
   <meta property="og:image" content="https://hyperitacademy.com/og/minecraft.svg">
   <meta property="og:locale" content="uk_UA">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="image" href="https://mc.hyperitacademy.com/assets/boy.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Курс Minecraft Education для дітей",
-    "description": "Курс Minecraft Education для дітей 8–13 років. Логіка, алгоритми та власні світи в ігровій формі.",
-    "url": "https://lp.hyperitacademy.com/minecraft",
-    "provider": {
-      "@type": "Organization",
-      "name": "HyperIT Academy",
-      "url": "https://hyperitacademy.com"
-    },
-    "educationalLevel": "Початковий",
-    "inLanguage": "uk",
-    "teaches": ["Логічне мислення", "Алгоритми", "Блочне програмування", "Командна робота"],
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "online",
-      "duration": "PT72H",
-      "inLanguage": "uk"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "UAH",
-      "description": "Перший урок безкоштовно"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Чи потрібно купувати Minecraft?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ні, для занять ми використовуємо Minecraft Education Edition — навчальну версію. Викладач допоможе з встановленням на першому уроці."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Скільки триває курс?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Курс складається з 3 семестрів по 24 заняття. Кожне заняття в групі триває 1 годину 20 хвилин."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Дитина просто гратиме чи реально вчитиметься?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "80% уроку — практика з блочним програмуванням. Дитина вчиться логіці, алгоритмам та математиці через створення проєктів у Minecraft."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Що буде після пробного уроку?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Після пробного уроку ми одразу починаємо навчання — підбираємо групу та зручний розклад. Жодних зобов'язань на пробному уроці."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Чи підйде дитині, яка ніколи не програмувала?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Так, курс підйде для всіх — навіть без жодного досвіду в програмуванні. Блочне програмування — ідеальний старт для дітей від 8 років."
-        }
-      }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "HyperIT Academy",
-    "url": "https://hyperitacademy.com",
-    "logo": "https://hyperitacademy.com/og/minecraft.svg",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "availableLanguage": "Ukrainian"
-    }
-  }
-  </script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
   <style>
     :root {
       --primary:#261339;--accent:#8C3CDD;--accent-h:#7B2FCC;
@@ -152,7 +64,8 @@
     .hero-content{text-align:center}
     @media(min-width:1024px){.hero-content{text-align:left}}
 
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(140,60,221,.12);border:1px solid rgba(140,60,221,.25);color:#C084FC;border-radius:100px;padding:6px 16px;font-size:13px;font-weight:700;margin-bottom:24px}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(140,60,221,.12);border:1px solid rgba(140,60,221,.25);color:#C084FC;border-radius:100px;padding:6px 16px;font-size:13px;font-weight:700;margin-bottom:24px;cursor:pointer;transition:background .2s,border-color .2s}
+    .hero-badge:hover{background:rgba(140,60,221,.2);border-color:rgba(140,60,221,.4)}
     .badge-dot{width:7px;height:7px;background:#C084FC;border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
     @keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.5);opacity:.3}}
 
@@ -654,7 +567,7 @@
 
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-badge"><div class="badge-dot"></div>для дітей 8–13 років · пробний урок безкоштовно</div>
+        <div class="hero-badge" onclick="openModal()" role="button" tabindex="0"><div class="badge-dot"></div>для дітей 8–13 років · пробний урок безкоштовно</div>
         <h1 class="hero-h1">Дитина любить Minecraft? Нехай не просто грає, а <span class="hl">створює власні світи</span> з кодом!</h1>
         <p class="hero-sub">Ваша дитина запрограмує персонажа та побудує 3D-об'єкт вже на першому безкоштовному уроці. Без складних кодів — ідеальний старт в IT.</p>
         <div class="hero-actions">
@@ -674,7 +587,7 @@
           <div class="fl-badge fl-badge-1"><span class="fl-badge-emoji">&#x26CF;&#xFE0F;</span><div><div class="fl-badge-label">Перший код написано!</div><div class="fl-badge-sub">Данило, 9 років</div></div></div>
           <div class="fl-badge fl-badge-2"><span class="fl-badge-emoji">&#x1F48E;</span><div><div class="fl-badge-label">+250 XP</div><div class="fl-badge-sub">Рівень пройдено</div></div></div>
           <div class="hero-img-wrap">
-            <img src="https://mc.hyperitacademy.com/assets/boy.webp" alt="Дитина програмує в Minecraft" class="hero-img">
+            <img src="https://mc.hyperitacademy.com/assets/boy.webp" alt="Дитина програмує в Minecraft" class="hero-img" fetchpriority="high">
           </div>
         </div>
       </div>
@@ -1192,6 +1105,108 @@
     const blocks=document.querySelectorAll('.pixel-block');let ticking=false;
     window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{const y=window.scrollY;blocks.forEach((b,i)=>{const s=.02+(i*.008);b.style.transform=`translateY(${y*s}px) rotate(${y*.01*(i%2?1:-1)}deg)`});ticking=false});ticking=true}},{passive:true});
   </script>
+  <!-- Clarity — deferred to not block rendering -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w75gb8exnv");
+  </script>
+
+  <!-- JSON-LD structured data — deferred to not block first paint -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Курс Minecraft Education для дітей",
+    "description": "Курс Minecraft Education для дітей 8–13 років. Логіка, алгоритми та власні світи в ігровій формі.",
+    "url": "https://lp.hyperitacademy.com/minecraft",
+    "provider": {
+      "@type": "Organization",
+      "name": "HyperIT Academy",
+      "url": "https://hyperitacademy.com"
+    },
+    "educationalLevel": "Початковий",
+    "inLanguage": "uk",
+    "teaches": ["Логічне мислення", "Алгоритми", "Блочне програмування", "Командна робота"],
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "duration": "PT72H",
+      "inLanguage": "uk"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "UAH",
+      "description": "Перший урок безкоштовно"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Чи потрібно купувати Minecraft?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ні, для занять ми використовуємо Minecraft Education Edition — навчальну версію. Викладач допоможе з встановленням на першому уроці."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Скільки триває курс?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Курс складається з 3 семестрів по 24 заняття. Кожне заняття в групі триває 1 годину 20 хвилин."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Дитина просто гратиме чи реально вчитиметься?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "80% уроку — практика з блочним програмуванням. Дитина вчиться логіці, алгоритмам та математиці через створення проєктів у Minecraft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Що буде після пробного уроку?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Після пробного уроку ми одразу починаємо навчання — підбираємо групу та зручний розклад. Жодних зобов'язань на пробному уроці."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Чи підйде дитині, яка ніколи не програмувала?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Так, курс підйде для всіх — навіть без жодного досвіду в програмуванні. Блочне програмування — ідеальний старт для дітей від 8 років."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HyperIT Academy",
+    "url": "https://hyperitacademy.com",
+    "logo": "https://hyperitacademy.com/og/minecraft.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": "Ukrainian"
+    }
+  }
+  </script>
+
   <!-- noscript pixel: uncomment and replace YOUR_PIXEL_ID when ready -->
   <!-- <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript> -->
 
