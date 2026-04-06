@@ -16,6 +16,14 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://media.hyperitacademy.space" crossorigin>
   <link rel="preload" as="image" href="https://media.hyperitacademy.space/media/20260406_122737_14954884.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://www.clarity.ms" crossorigin>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w75gb8exnv");
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap">
@@ -923,7 +931,7 @@
   <footer>
     <a href="https://hyperitacademy.com" class="foot-logo"><img src="https://media.hyperitacademy.space/media/20260228_014256_34712f19.png" alt="HyperIT Academy" onerror="this.style.display='none'"></a>
     <div class="foot-socials">
-      <a href="https://t.me/HyperIT_Academy_bot" class="soc-btn" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg></a>
+      <a href="https://t.me/trial_lessons_HyperIT_bot?start=trial" class="soc-btn" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg></a>
     </div>
     <a href="mailto:hyperitacademy@gmail.com" class="foot-email">hyperitacademy@gmail.com</a>
     <div class="foot-legal">
@@ -941,7 +949,7 @@
       <div class="modal-form" id="modal-form">
         <div class="modal-title">Записатися на пробний урок</div>
         <p class="modal-sub">Ми перенаправимо вас у Telegram-бот, де можна обрати зручний час для безкоштовного уроку</p>
-        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="modal-tg" onclick="onTgClick(event)">
+        <a href="https://t.me/trial_lessons_HyperIT_bot?start=trial" class="modal-tg" onclick="onTgClick(event)">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
           Продовжити в Telegram
         </a>
@@ -965,7 +973,7 @@
         <div class="modal-success-icon">&#x2705;</div>
         <div class="modal-success-title">Заявку надіслано!</div>
         <p class="modal-success-text">Ми зв'яжемося з вами найближчим часом, щоб обрати зручний час для пробного уроку.</p>
-        <a href="https://t.me/trial_lessons_HyperIT_bot?start=minecraft" class="modal-success-tg" id="modal-success-tg-link">
+        <a href="https://t.me/trial_lessons_HyperIT_bot?start=trial" class="modal-success-tg" id="modal-success-tg-link">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
           Перейти в Telegram
         </a>
@@ -1105,14 +1113,6 @@
     /* Parallax blocks */
     const blocks=document.querySelectorAll('.pixel-block');let ticking=false;
     window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{const y=window.scrollY;blocks.forEach((b,i)=>{const s=.02+(i*.008);b.style.transform=`translateY(${y*s}px) rotate(${y*.01*(i%2?1:-1)}deg)`});ticking=false});ticking=true}},{passive:true});
-  </script>
-  <!-- Clarity — deferred to not block rendering -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "w75gb8exnv");
   </script>
 
   <!-- JSON-LD structured data — deferred to not block first paint -->
